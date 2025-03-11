@@ -31,7 +31,7 @@ to build a Election Management System for digital voting process
 # Setup
 
 Software needed 
-- Apache server 
+- Xampp Apache server 
 - MongoDB 
 - composer PHP library 
 
