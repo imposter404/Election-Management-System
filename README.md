@@ -30,6 +30,11 @@ to build a Election Management System for digital voting process
 
 # Setup
 
+Software needed 
+- Apache server 
+- MongoDB 
+- composer PHP library 
+
 
 > ``` cmd
 > #include<iostream.h>
