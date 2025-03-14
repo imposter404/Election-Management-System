@@ -31,7 +31,7 @@ to build a Election Management System for digital voting process
 # Setup
 
 ## Enviornment Setup
-- install MongoDb Compass 
+- install MongoDB Compass form here [MongoDB](https://www.mongodb.com/try/download/compass)
 - for MongoDb PHP connection you will need the PHP_MONGODB.dll file download from [PERL](https://pecl.php.net/package/mongodb)
     - now you will have 2 option
         - Thread Safe (ts)
