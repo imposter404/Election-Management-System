@@ -36,7 +36,7 @@ to build a Election Management System for digital voting process
     - now you will have 2 option
         - Thread Safe (ts)
         - Non Thread Safe (nts)
-- install `Xampp`
+- install `Xampp` from here [Xampp](https://www.apachefriends.org/)
 - go to `Xampp/php` there will be a file `php8ts.dll` download `ts` or `nts` accoding to it
 - copy the `PHP_MONGODB.dll` file to `Xampp/php/ext` and paste it here 
 - goto  `Xampp/php/php.ini` and write the code
