@@ -32,7 +32,7 @@ to build a Election Management System for digital voting process
 
 ## Enviornment Setup
 - install MongoDb Compass 
-- for MongoDb PHP connection you will need the PHP_MONGODB.dll file download from PERL [PERL](https://pecl.php.net/package/mongodb)
+- for MongoDb PHP connection you will need the PHP_MONGODB.dll file download from [PERL](https://pecl.php.net/package/mongodb)
     - now you will have 2 option
         - Thread Safe (ts)
         - Non Thread Safe (nts)
