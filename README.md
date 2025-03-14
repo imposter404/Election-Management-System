@@ -51,7 +51,7 @@ to build a Election Management System for digital voting process
 > http://localhost/dashboard/phpinfo.php
 > ```
 - search for `MongoDB` it will say `enabled`
-- now go to `Composer` website and download it []
+- now go to `Composer` website and download it [Composer](https://getcomposer.org/)
 - go to your project dir and create a folder `phpmongodb` and open this dir in `cmd`
 - run the command 
 > ```cmd
