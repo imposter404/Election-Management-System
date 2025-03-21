@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<input type="text" id="user_id" value="ABC">
+<input type="text" id="password" value="123">
+
+<button onclick="fn()">BTN</button>
+
+</body>
+<script src="CDN/SHA256.js"></script>
+<script>
+
+
+let response
+
+
+function sendPHP(e) {
+  let xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      response=this.responseText;
+   /*document.getElementById("demo").innerHTML =*/
+   // console.log(this.responseText);
+   return(this.responseText)
+  }
+ xhttp.open("POST","login.php?q="+e,false);
+ xhttp.send();
+}
+
+
+
+let obj
+
+function fn(){
+  // obj={
+  //   user_id:sha256(document.getElementById("user_id").value),
+  //   password:sha256(document.getElementById("password").value)
+  // }
+  obj={
+    user_id:document.getElementById("user_id").value,
+    password:document.getElementById("password").value
+  }
+
+  sendPHP(JSON.stringify(obj));
+  // response=JSON.parse(response)
+  console.log(response)
+ 
+  // sessionStorage.setItem("SessionToken",response);
+}
+
+
+
+
+
+</script>
+</html>
 
