@@ -5,14 +5,560 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="CDN/bootstrap.min.css">
+<script src="CDN/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
+<style>
+
+*{
+  /* border: .5px solid red;  */
+  box-sizing: border-box;
+}
+body{
+  background: url(img/a1.jpg) center/cover;
+  margin: 0;
+  height: 100dvh;
+  color: white;
+}
+.middle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}
+.flex{
+  display: flex;
+}
+
+.f1{
+  font-size: 30px;
+}
+
+
+
+.Login{
+  height: 100%;
+  .middle{
+    height: 100%;
+  }
+  .card1{
+    height: 500px;
+    width: 400px;
+    background: rgb(56, 56, 56);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 0px 2px;
+  }
+  .flex{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .flex-div{
+    /* border: 1px solid red; */
+    flex: auto;
+    flex-direction: column;
+  }
+}
+
+.input{
+  border-color:#1b9bee;
+  background-color: transparent;
+  color: #ffffff;
+  caret-color: #ffffff;
+  outline-width: 0;
+  border-radius: 50px;
+  :focus-within{
+    background-color: transparent;
+    color: #ffffff;
+  }
+}
+.input-group-text{
+  background: transparent;
+  color: white;
+}
+.form-control{
+  background: transparent;
+  color: #ffffff;
+}
+.form-floating .form-select{
+  background: transparent;
+  color: #ffffff;
+}
+.form-select option{
+  background: #28004d;
+}
+
+
+.header{
+  z-index: 10;
+  .flex{
+    flex-direction:row ;
+  }
+  .glider{
+        background:#3232ff;
+        height:100%;
+        /* width: 200px; */
+        width: 50%;
+        border-radius: 50px;
+        transition: all .5s ease-in-out;
+    }
+  .tab1{
+        background:rgb(44, 44, 44);
+        height:50px;
+        width: 300px;
+        border-radius: 50px;
+        position: relative;
+        z-index: 1;
+    }
+    input[id="r2"]{
+        &:checked{
+            & ~ .glider{
+                transform: translateX(100%);
+                background-color: #ff006a;
+            }
+            & ~ .zz{
+                opacity: 0;
+            }
+        }
+    }
+    input{
+        display: none;
+    }
+    label{
+        z-index:1;
+        height:100%;
+        width: 50%;
+        cursor: pointer;
+    }
+}
+
+.offcanvas1{
+    position: fixed;
+    inset: 75px 0 0 0;
+    background: #ca620000;
+    background: rgba(97, 0, 0, 0.712);
+    padding: 70px 50px;
+    z-index: 2;
+    transform: translateY(100%);
+    border-radius: 50px 50px 0 0;
+    /* padding: 10px 0 0 0; */
+    /* opacity: 0; */
+    visibility: hidden;
+}
+
+.show{
+  position: fixed;
+  inset: 0 0 0 0;
+  /* filter: blur(40px); */
+  backdrop-filter: blur(40px);
+  /* background: #ca6200; */
+  transition: all.5s ease-in-out;
+}
+
+
+
+/* offcanvas1 animation */
+.slide-in{
+  visibility:visible;
+  animation: slide-in .5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes slide-in{
+  0%{
+    transform: translateY(100%);
+  }
+  100%{
+    transform: translateY(0%);
+  }
+}
+
+
+
+.slide-out{
+  animation: slide-out .5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes slide-out{
+  0%{
+    transform: translateY(0%);
+  }
+  100%{
+    transform: translateY(100%);
+  }
+}
+
+.register{
+  .flex{
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .flex-div{
+    padding: 20px;
+  }
+  .card1{
+    height: 300px;
+    aspect-ratio: 4/3;
+    background: rgb(56, 56, 56);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 0px 2px;
+  }
+  .form.flex{
+    height: auto;
+    flex-wrap: wrap;
+  }
+}
+
+
+
+
+
+
+</style>
 <body>
-    
+
+<div class="Login">
+  <div class="middle">
+    <div class="header" style="position: absolute;inset: 50px auto auto auto;">
+      <div class="tab1 flex">
+        <input class="flex-div" type="radio" name="tab" id="r1" >
+        <label for="r1" class="middle" onclick='offcanvas_Close("#Register")'>Login</label>
+        <input class="flex-div" type="radio" name="tab" id="r2" >
+        <label for="r2" class="middle" onclick='offcanvas_Open("#Register")'>Register</label>
+        <div class="glider" style="position: absolute;"></div>  
+      </div>
+    </div>
+
+    <div class="card1">
+      <div class="flex" style="height: 100%;">
+        <div class="flex-div" style="margin: 20px;">
+          <div class="middle f1">WELCOME</div>
+        </div>
+        <hr>
+        <div class="flex-div middle">
+          <div class="input-group has-validation">
+            <span class="input-group-text">@</span>
+            <div class="form-floating is-invaid input">
+              <input type="text" class="form-control " id="user_id" placeholder="Username" autocomplete="off" value="ABC"  required>
+              <label for="user_id">Username</label>
+            </div>
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+          <div class="input-group has-validation" style="margin-top: 30px;">
+            <span class="input-group-text">@</span>
+            <div class="form-floating is-invaid input">
+              <input type="text" class="form-control " id="password" placeholder="Username" autocomplete="off" value="123"  required>
+              <label for="password">Password</label>
+            </div>
+            <div class="invalid-feedback">
+              Please choose a Password.
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="flex-div" style="padding: 20px 0;">
+          <div>
+            <button class="btn btn-primary" style="width: 100%;height: 50px;" onclick="fn()">
+                LOG IN
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="offcanvas1-backdrop show"></div>
+
+<div class="offcanvas1 register slide-in" id="Register">
+  <div class="middle" style="height: 100%;">
+    <div class="flex">
+      <div class="flex-div middle">
+        <div class="card1"></div>
+      </div>
+
+      <div class="flex-div middle">
+        <div style="height: 80%;background: #ffffff98;padding: 0;width: 1px;"></div>
+      </div>
+
+      <div class="flex-div middle" style="flex-direction: column;">
+        <div>
+          <div class="flex form">
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="First_name" placeholder="First Name" autocomplete="off"  required>
+                  <label for="First_name">First name</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a First name.
+                </div>
+              </div>
+            </div>
+          
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="Last_name" placeholder="Last Name" autocomplete="off"  required>
+                  <label for="Last_name">Last name</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a Last Name.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="flex form">
+            <div class="flex-div">
+              <div class="input-group has-validation" style="width: 248px;">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="date" class="form-control " id="First_name" placeholder="First Name" autocomplete="off"   required>
+                  <label for="First_name">Date</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a First name.
+                </div>
+              </div>
+            </div>
+          
+            <div class="flex-div">
+              <div class="form-floating" style="width: 248px;">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <option selected>---</option>
+                  <option value="Male">Male</option>
+                  <option value="Male">Female</option>
+                  <!-- <option value="3">Why are you Gay ?</option> -->
+                </select>
+                <label for="floatingSelect">Gender</label>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+
+        <div>
+          <div class="flex form">
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="Pin_Code" placeholder="Pin Code" autocomplete="off"   required>
+                  <label for="Pin Code">Phone No</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a Phone No.
+                </div>
+              </div>
+            </div>
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="State" placeholder="State" autocomplete="off"   required>
+                  <label for="State">Email</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a Email.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="flex form">
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="Pin_Code" placeholder="Pin Code" autocomplete="off"   required>
+                  <label for="Pin Code">Pin Code</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a Pin Code.
+                </div>
+              </div>
+            </div>
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="State" placeholder="State" autocomplete="off"   required>
+                  <label for="State">State</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a First name.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="flex form">
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="Pin_Code" placeholder="Pin Code" autocomplete="off"   required>
+                  <label for="Pin Code">Address 1</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a Pin Code.
+                </div>
+              </div>
+            </div>
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="State" placeholder="State" autocomplete="off"   required>
+                  <label for="State">Address 2</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a First name.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+        <hr style="width: 100%;">
+
+        <div>
+          <div class="flex form">
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="Username" placeholder="Username" autocomplete="off"   required>
+                  <label for="Username">Username</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a Username.
+                </div>
+              </div>
+            </div>
+          
+            <div class="flex-div">
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <div class="form-floating is-invaid input">
+                  <input type="text" class="form-control " id="Password" placeholder="Password" autocomplete="off"  required>
+                  <label for="Password">Password</label>
+                </div>
+                <div class="invalid-feedback">
+                  Please choose a Password.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 50px;width: 100%;">
+          <div style="width: 100%;">
+            <button class="btn btn-primary" style="width: 100%;height: 50px;">Sign Up</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--     
 <input type="text" id="user_id" value="ABC">
 <input type="text" id="password" value="123">
 
-<button onclick="fn()">BTN</button>
-
+<button onclick="fn()">BTN</button> -->
 </body>
+<script src="a.js"></script>
+<script>
+  function offcanvas_Open(e)
+{
+  let elements=document.querySelectorAll(e);
+  elements.forEach(element => {
+    element.classList.remove("slide-out");
+    element.classList.add("slide-in");
+  });
+  let backdrop=document.querySelectorAll('.offcanvas1-backdrop')
+      backdrop.forEach(element => {
+      element.classList.add("show");
+    });
+}
+
+
+
+
+function offcanvas_Close(e)
+{
+  let elements=document.querySelectorAll(e);
+  elements.forEach(element => {
+    element.classList.add("slide-out");
+    // element.classList.remove("slide-in");
+  });
+  let backdrop=document.querySelectorAll('.offcanvas1-backdrop')
+      backdrop.forEach(element => {
+      element.classList.remove("show");
+    });
+}
+
+</script>
 <script src="CDN/SHA256.js"></script>
 <script>
 
@@ -45,11 +591,9 @@ function fn(){
     user_id:document.getElementById("user_id").value,
     password:document.getElementById("password").value
   }
-
   sendPHP(JSON.stringify(obj));
   // response=JSON.parse(response)
   console.log(response)
- 
   // sessionStorage.setItem("SessionToken",response);
 }
 
