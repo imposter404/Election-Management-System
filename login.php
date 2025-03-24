@@ -12,11 +12,38 @@ $database = $client->selectDatabase('Project');;
 $collection = $database->selectCollection('user');
 
 
+session_start();
 
 $q=$_REQUEST['q'];
 $r=json_decode($q);
-// $fn=$r->do;
-$fn=$r->user_id;
+// $fn=$r->user_id;
+// $_SESSION["Token"]="12";
+
+
+if($r->SessionToken !="")
+{
+    if($r->SessionToken==$_SESSION["Token"])
+    {
+        echo "valid";
+    }
+    else{
+        echo "invalid";
+    }
+}
+else{
+    // echo "no";
+    z();
+}
+// echo $r;
+// print_r(json_encode($q));
+// print_r($r->SessionToken);
+
+
+
+
+function z(){
+global $r;
+global $collection;
 
 $user_hash=hash('sha256',$r->user_id);
 $password_hash=hash('sha256',$r->password);
@@ -27,10 +54,10 @@ $password_hash=hash('sha256',$r->password);
 class obj{} //object define
 $a=new obj();
 
-
+$g=125;
 
 $document = $collection->findOne(['user_hash'=>$user_hash]);
-$filter = ['_id' => new MongoDB\BSON\ObjectId($document->_id)];
+// $filter = ['_id' => new MongoDB\BSON\ObjectId($document->_id)];
 if($document)
 {
     $a->user_id='true';
@@ -38,12 +65,8 @@ if($document)
     if($document)
     {
         $a->password='true';
-        if($document->SessionToken == "")
-        {
-            $a->SessionToken=session_create_id();
-            $update = ['$set' => ['SessionToken' =>$a->SessionToken]];
-            $result = $collection->updateOne($filter, $update);
-        }
+        $a->SessionToken=session_create_id();
+        $_SESSION["Token"]=$a->SessionToken;
     }
     else{
         $a->password='false';
@@ -52,6 +75,8 @@ if($document)
 else{
     $a->user_id='false';
 }
-
 print_r(json_encode($a));
+}
+
+// z();
 ?>
