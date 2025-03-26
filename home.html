@@ -42,12 +42,8 @@ body{
     width: 100%;
     height: 100%;
   }
-  .flex-div{
-    /* border: .5px solid red; 
-    box-sizing: border-box; */
-  }
   .nav{
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     width: 72px;
     inset: 0 auto 0 0 ;
@@ -315,6 +311,100 @@ body{
 }
 
 
+.offcanvas1{
+    position: absolute;
+    /* inset: 75px 0 0 0; */
+    background: #ca620000;
+    /* background: rgba(97, 0, 0, 0.712); */
+    padding: 70px 50px;
+    z-index: 1;
+    /* transform: translateY(100%); */
+    /* border-radius: 50px 50px 0 0; */
+}
+.show{
+  position: fixed;
+  inset: 0 0 0 0px;
+  width: 100%;
+  backdrop-filter: blur(40px);
+  transition: all .5s ease-in-out;
+  transform: translateX(0px);
+}
+
+
+.input{
+  border-color:#1b9bee;
+  background-color: transparent;
+  color: #ffffff;
+  caret-color: #ffffff;
+  outline-width: 0;
+  border-radius: 50px;
+  :focus-within{
+    background-color: transparent;
+    color: #ffffff;
+  }
+}
+.input-group-text{
+  background: transparent;
+  color: white;
+}
+.form-control{
+  background: transparent;
+  color: #ffffff;
+  &:focus{
+    &:focus-within{
+      border: yellow;
+    }
+  }
+}
+.form-floating .form-select{
+  background: transparent;
+  color: #ffffff;
+}
+.form-select option{
+  background: #28004d;
+}
+
+
+
+
+.user{
+  .card1{
+    /* height: 550px; */
+    height: 550px;
+    width: 350px;
+    /* background: #ffffff71; */
+    background: linear-gradient(0deg,#f50097bb,#00000077);
+    border-radius: 20px;
+    padding: 20px 30px;
+    border: 1px solid #f50097bb;
+    transition: all .4s ease;
+    overflow: hidden;
+    .input-group{
+      padding: 5px 0;
+    }
+    .circle{
+        height: 100%;
+        /* width: 50px; */
+        /* width: 80%; */
+        aspect-ratio: 1/1;
+        background: white;
+        border-radius: 50%;
+      }
+    &:hover{
+      box-shadow: 0 0 0px 5px rgb(255, 255, 255);
+      scale: 1.05;
+      button{
+        background: #ffc107;
+        color: black;
+        border: 1px solid transparent;
+      }      
+    }
+  }
+}
+
+
+
+
 
 
 
@@ -323,7 +413,6 @@ body{
 </style>
 <body>
     
-
 <div class="home">
   <div class="flex">
     <div class="flex-div" style="width: 72px;">
@@ -335,7 +424,7 @@ body{
               <div class="tab-name middle">HOME</div>
             </div>
             <hr>
-            <div class="tabs active">
+            <div class="tabs active" onclick="t()">
               <div class="tab-icon middle"><i class="bi bi-person"></i></div>
               <div class="tab-name middle">PROFILE</div>
             </div>
@@ -497,12 +586,69 @@ body{
 </div>
 
 
-<div class="offcanvas1 profile">
-
-</div>
 
 
 
+<!-- 
+<div class="offcanvas1 user show">
+  <div class="middle" style="height: 100%;">
+    <div class="card1">
+      <div class="middle" style="height: 30%;">
+        <div class="circle"></div>
+      </div>
+      <hr>
+      <div class="input-group has-validation">
+        <span class="input-group-text">@</span>
+        <div class="form-floating is-invaid input">
+          <input type="text" class="form-control " id="Reset_user_id" placeholder="Username" autocomplete="off" value="ABC"  required>
+          <label for="Reset_user_id">Username</label>
+        </div>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="input-group has-validation">
+        <span class="input-group-text">@</span>
+        <div class="form-floating is-invaid input">
+          <input type="text" class="form-control " id="Reset_password" placeholder="Username" autocomplete="off" value="123"  required>
+          <label for="Reset_password">Password</label>
+        </div>
+        <div class="invalid-feedback">
+          Please Enter a Password.
+        </div>
+      </div>
+      <hr>
+      <div class="input-group has-validation">
+        <span class="input-group-text">@</span>
+        <div class="form-floating is-invaid input">
+          <input type="text" class="form-control " id="Reset_password_confirm" placeholder="Username" autocomplete="off" value="123"  required>
+          <label for="Reset_password_confirm">Confirm Password</label>
+        </div>
+        <div class="invalid-feedback">
+          Please Confirm a Password.
+        </div>
+      </div>
+      <hr>
+      <div>
+        <button class="btn btn-outline-light" style="width: 100%;height: 50px;">SAVE</button>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<script>
+  
+
+function t(){
+  document.getElementById("d").classList.add("t");
+  document.getElementById("p").classList.add("v");
+}
+
+</script>
 
 
 
