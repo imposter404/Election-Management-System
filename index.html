@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <link rel="stylesheet" href="CDN/bootstrap.min.css">
+<link rel="stylesheet" href="CDN/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
 <script src="CDN/bootstrap.min.js"></script>
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
 <style>
@@ -15,7 +16,8 @@
   box-sizing: border-box;
 }
 body{
-  background: black;
+  /* background: black; */
+  background: rgb(29, 29, 29);
   margin: 0;
   height: 100dvh;
   color: white;
@@ -128,6 +130,39 @@ body{
     transform: translateY(100%);
   }
 }
+
+
+
+
+.slide-in-right{
+  visibility:visible;
+  animation: slide-in-right .5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes slide-in-right{
+  0%{
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+.slide-out-right{
+  animation: slide-out-right .5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes slide-out-right{
+  0%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+
+
+
+
 
 
 
@@ -328,10 +363,376 @@ body{
 
 
 
+/* ----------------------- */
+      /* home .html */
+/* ------------------ */
+
+
+.home{
+  height: 100%;
+  .flex{
+    width: 100%;
+    height: 100%;
+  }
+  .nav{
+    z-index: 3;
+    position: fixed;
+    width: 72px;
+    inset: 0 auto 0 0 ;
+    /* background: rgb(54, 0, 9); */
+    background: rgba(0, 0, 0, 0.295);
+    padding: 50px 5px;
+    transition: all .3s ease-in-out;
+    backdrop-filter: blur(4px);
+    &:hover{
+      width: 170px;
+    }
+    &.flex{
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap:20px;
+      .flex-div{
+        flex: auto;
+      }
+    }
+    .mid{
+      /* border: 1px solid white; */
+      background: linear-gradient(45deg, #024280, #750066);
+      width: 100%;
+      border-radius: 8px;
+      padding: 50px 5px;
+      height: 80%;
+      position: relative;
+      &.logout{
+        height: 20px;
+        padding: 5px;
+      }
+      .tabs{
+        overflow: hidden;
+        display: flex;
+        position: relative;
+        /* padding: 5px; */
+        .tab-icon{
+          /* border: 1px solid rgba(255, 255, 255, 0.26); */
+          border: 1px solid transparent;
+          height: 50px;
+          aspect-ratio: 1/1;
+          border-radius: 8px;
+          background: rgba(0, 0, 0, 0.178);
+          transition: all .2s ease;
+        }
+        .tab-name{
+          padding: 0 10px;
+        }
+        
+        &:hover{
+          background: rgba(0, 0, 0, 0.432);
+          border-radius: 30px;
+          .tab-icon{
+            color: black;
+            border-radius: 50%;
+            background: rgb(255, 255, 255);
+          }
+        }
+      }
+      .active{
+        .tab-icon{
+          /* color: black; */
+          border-radius: 50%;
+          background: rgb(255, 29, 206);
+        }
+      }
+      .glider{
+      height: 50px;
+      width: 100%;
+      position: absolute;
+      /* inset: 0 0 0 0; */
+      background: rgba(255, 255, 0, 0.342);
+      transition: all .4s ease;
+      }
+    }
+  }
+}
+
+.tab-home{
+  height: 100%;
+  padding: 50px 50px;
+  .flex{
+    flex-direction: column;
+    .flex-div{
+      height: 50%;
+      align-items: center;
+      display: flex;
+    }
+    .flex {
+      padding: 50px 0;
+      justify-content: space-between;
+      gap: 50px;
+      flex-direction: row;
+      .flex-div{
+        padding: 10px;
+        height: 100%;
+      }
+  }
+
+  }
+  .card1{
+    border-radius: 15px;
+    font-size: 20px;
+    /* background: rgb(61, 61, 61); */
+    background:linear-gradient(0deg,#410033,#00379e);
+    border: 1px solid #048792;
+    /* width: 100px; */
+    height: 200px;
+    min-width: 150px;
+    width: 20%;
+    transition: all .4s ease;
+    overflow: hidden;
+    &.wellcome{
+      width: 30%;
+    }
+    &.time{
+      width: 25%;
+      .flex{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0;
+        gap: 0;
+        .flex-div{
+          height: fit-content;
+        }
+      }
+    }
+    &.approved{
+      background: green;
+      background: rgb(253, 55, 55);
+      width: 15%;
+      .checked{
+        font-size: 50px;
+        background: green;
+        color: white;
+        aspect-ratio: 1/1;
+        height: 100px;
+        border-radius: 50%;
+      }
+      .checked{
+        font-size: 50px;
+        background: rgb(253, 55, 55);
+        color: white;
+        aspect-ratio: 1/1;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
+    &.profile{
+      width: 20%;
+      z-index: 1;
+      justify-content: unset;
+      align-items: unset;
+      flex-direction: column;
+      overflow: hidden;
+      .circle{
+        height: 80%;
+        /* width: 50px; */
+        /* width: 80%; */
+        aspect-ratio: 1/1;
+        background: white;
+        border-radius: 50%;
+      }
+      .box{
+        /* height: 200px; */
+        height: 75%;
+        transition: all .5s ease;
+      }
+      &:hover{
+        width: 20%;
+        height: 80dvh;
+        .box{
+          /* height: 100px; */
+          height: 10%;
+        }
+      }
+    }
+    &.secure{
+      position: relative;
+      .flex{
+        padding: 20px 0;
+        flex-direction: column;
+        /* justify-content: left; */
+        /* align-items: start; */
+        gap: 0;
+        .flex-div{
+          align-items: start;
+          flex-direction: column;
+        }
+        .line{
+          background: #410033;
+          border-radius: 10px;
+          width: 0%;
+          height: 56%;
+          position: absolute;
+          inset: auto 0 0 auto;
+          transition: all .3s ease;
+        }
+      }
+      &:hover{
+        .line{
+          width: 70%;
+          background: red;
+          inset: auto 0 13px 20px;
+        }
+      }
+    }
+    &.timeline{
+      width: 10%;
+      position: relative;
+      .line{
+        z-index: -1;
+        background: rgb(0, 0, 0);
+        height: 0%;
+        width: 100%;
+        position: absolute;
+        inset: auto auto 0 auto;
+        transition: all .3s ease;
+        border-radius: 20px 20px 0 0 ;
+      }
+      .flex{
+        justify-content: space-around;
+        gap:0;
+        .flex-div{
+          padding: 0px;
+        }
+      }
+      .complete{
+        padding: 0 10px;
+        color: greenyellow;
+      }
+      .ongoing{
+        padding: 0 10px;
+        color: yellow;
+      }
+      .rejected{
+        padding: 0 10px;
+        color: red;
+      }
+      &:hover{
+        width: 100%;
+        .line{
+          height: 80%;
+          width: 95%;
+          background: rgb(82, 0, 75);
+          inset: auto 0px 0px 30px;
+        }
+      }
+    }
+    &.vote{
+      background: red;
+      width: 20%;
+      &:hover{
+        width: 20%;
+      }
+    }
+    &:hover{
+      width: 40%;
+      background: transparent;
+      backdrop-filter: blur(40px);
+    }
+  }
+}
 
 
 
+.user{
+  z-index: 2;
+  background: #ca620000;
+  backdrop-filter: blur(40px);
+  position: fixed;
+  inset: 0 0 0 0px;
+  .card1{
+    /* height: 550px; */
+    height: 550px;
+    width: 350px;
+    /* background: #ffffff71; */
+    background: linear-gradient(0deg,#f50097bb,#00000077);
+    border-radius: 20px;
+    padding: 20px 30px;
+    border: 1px solid #f50097bb;
+    transition: all .4s ease;
+    overflow: hidden;
+    .input-group{
+      padding: 5px 0;
+    }
+    .circle{
+        height: 100%;
+        /* width: 50px; */
+        /* width: 80%; */
+        aspect-ratio: 1/1;
+        background: white;
+        border-radius: 50%;
+      }
+    &:hover{
+      box-shadow: 0 0 0px 5px rgb(255, 255, 255);
+      scale: 1.05;
+      button{
+        background: #ffc107;
+        color: black;
+        border: 1px solid transparent;
+      }      
+    }
+  }
+}
 
+.Profile{
+  z-index: 2;
+  background: #ca620000;
+  background: #003e5a;
+  /* backdrop-filter: blur(40px); */
+  border-radius: 0;
+  position: fixed;
+  inset: 0 0 0 70px;
+  .flex{
+    flex-direction: row;
+    height: 95%;
+    .flex-div{
+      flex: 50%;
+      .flex{
+        flex-wrap: wrap;
+        align-content: center;
+        padding: 0 20px;
+        .flex-div{
+          padding: 10px;
+          flex: 50%;
+        }
+      }
+    }
+  }
+  .card1{
+    border: 1px solid white;
+    height: fit-content ;
+    width: 60%;
+    padding: 20px;
+    /* background: white; */
+    border-radius: 10px;
+    min-width: 300px;
+    position: relative;
+    .circle{
+      position: absolute;
+      height: 60%;
+      aspect-ratio: 1/1;
+      background: rgba(255, 255, 255, 0.459);
+      transform:translate(-30%,-30%);
+      border-radius: 50%;
+      z-index: +1;
+    }
+    .flex{
+      height: fit-content;
+      padding: 0 !important;
+
+    }
+  }
+}
 
 
 
@@ -412,7 +813,7 @@ body{
 
 
 
-<div class="offcanvas1-backdrop "></div>
+<div class="offcanvas1-backdrop" style="z-index: 2;"></div>
 
 <div class="offcanvas1 register " id="Register">
   <div class="middle" style="height: 100%;">
@@ -449,6 +850,7 @@ body{
           </div> -->
 
           <!-- js render -->
+           <!-- not working -->
         </div>
       </div>
     </div>
@@ -457,11 +859,317 @@ body{
 
 
 
-<div class="a middle">
-  <div class="middle" style="height: 100%;width: 100%;">
-    <div class="z">a</div>
-  </div>
 
+
+<!-------------------------
+      home .html 
+----------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="home">
+  <div class="flex">
+    <div class="flex-div" style="width: 72px;">
+        <div class="nav flex">
+          <div class="mid flex-div" id="tabs">
+            <!-- <div class="glider"></div> -->
+            <div class="tabs" onclick="tabs('HOME',this)">
+              <div class="tab-icon middle"><i class="bi bi-house"></i></div>
+              <div class="tab-name middle">HOME</div>
+            </div>
+            <hr>
+            <div class="tabs" onclick="tabs('PROFILE',this)">
+              <div class="tab-icon middle"><i class="bi bi-person"></i></div>
+              <div class="tab-name middle">PROFILE</div>
+            </div>
+            <hr>
+            <div class="tabs" onclick="tabs('RESET',this)">
+              <div class="tab-icon middle"><i class="bi bi-lock"></i></div>
+              <div class="tab-name middle">User</div>
+            </div>
+          </div>
+          <hr>
+          <div class="mid flex-div logout">
+            <div class="flex-div">
+              <div class="tabs">
+                <div class="tab-icon middle"><i class="bi bi-box-arrow-right"></i></div>
+                <div class="tab-name middle">logout</div>
+              </div>
+            </div>
+            <!-- <div class="tab-name middle">User</div> -->
+          </div>
+        </div>
+    </div>
+
+    <!-- //main part -->
+    <div class="flex-div" style="flex: auto">
+      <div class="tab-home">
+        <div class="flex">
+          <div class="flex-div">
+            <div class="flex">
+              <div class="flex-div card1 wellcome middle"> Welcome Back</div>
+
+              <div class="flex-div card1 time middle">
+                <div class="flex middle">
+                  <div class="flex-div" style="font-size: 15px;">Start Date</div>
+                  <div class="flex-div" style="font-size: 30px;">8 OCT</div>
+                  <hr style="width: 80%;">
+                  <div class="flex-div" style="font-size: 15px;">Start Date</div>
+                  <div class="flex-div" style="font-size: 30px;">9 OCT</div>
+                </div>
+              </div>
+
+              <div class="flex-div card1 approved middle ">
+                <div>
+                  <div class="middle checked">
+                    <!-- <i class="bi bi-check-lg"></i> -->
+                    <i class="bi bi-x-lg"></i>
+                  </div>
+                  <div class="middle">checked</div>
+                  <!-- <div class="middle">Rejected</div> -->
+                </div>
+              </div>
+
+              <div class="flex-div card1 profile">
+                <div style="height: 100%;">
+                  <div class="box middle">
+                    <div class="circle middle"></div>
+                  </div>
+                  <hr style="width: 100%;">
+                  <div class="middle" style="font-size: 30px;">ARATRICK NATH</div>
+                  <div style="padding: 20px 40px;overflow: hidden;">
+                    <div style="font-size: 10px;">Voter ID</div>
+                    <div style="font-size: 20px;">Voter ID++</div>
+                    <hr>
+                    <div style="font-size: 8px;">DOB</div>
+                    <div style="font-size: 20px;">DOB ++</div>
+                    <hr>
+                    <div style="font-size: 8px;">Gender</div>
+                    <div style="font-size: 20px;">Gender ++</div>
+                    <hr>
+                    <div style="font-size: 8px;">Phone No</div>
+                    <div style="font-size: 20px;">Phone No ++</div>
+                    <hr>
+                    <div style="font-size: 8px;">Email</div>
+                    <div style="font-size: 20px;">Email ++</div>
+                    <hr>
+                    <div style="font-size: 8px;">Pin Code</div>
+                    <div style="font-size: 20px;">Pin Code ++</div>
+                    <hr>
+                    <div style="font-size: 8px;">State</div>
+                    <div style="font-size: 20px;">State++</div>
+                    <hr>
+                    <div style="font-size: 8px;">Address</div>
+                    <div style="font-size: 20px;">Address ++</div>
+                    <div style="transform: translateX(-40px);"><i class="bi bi-pencil-square" style="font-size: 15px;padding: 10px 0;"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-div">
+            <div class="flex">
+              <div class="flex-div card1 secure">
+                <div class="flex">
+                  <div class="flex-div">
+                    <div style="font-size: 35px;">SECURED</div>
+                    <hr style="width: 100%;">
+                  </div>
+                  <div class="flex-div" style="padding: 20px 25px;">
+                    <div class="line"></div>
+                    <div style="z-index: 0;width: 50%;">
+                      <div style="font-size: 15px;">UserID</div>
+                      <div style="font-size: 30px;">ABCD</div>
+                      <hr style="width: 100%;">
+                      <div style="font-size: 15px;">Password</div>
+                      <div style="font-size: 30px;">
+                        ********
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-div card1 timeline" style="width: 50%;"></div>
+
+              <div class="flex-div card1 timeline">
+                <!-- <div class="line"></div> -->
+                <div class="flex" style="width: 100%;">
+                  <div class="flex-div">
+                  <table class="table text-light text-nowrap table-borderless">
+                    <tr style="height: 46px;"><td></td></tr>
+                    <tr><td><i class="bi bi-check-lg complete"></i>Complete</td></tr>
+                    <tr><td colspan="2"><i class="bi bi-arrow-clockwise ongoing"></i>Ongoing</td></tr>
+                    <tr><td colspan="2"><i class="bi bi-x-lg rejected"></i>Rejected</td></tr>
+                  </table>
+                  </div>
+                  <div class="flex-div">
+                  <table class="table text-light text-nowrap table-borderless">
+                    <tbody>
+                      <tr>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Update</td>
+                      </tr>
+                      <tr>
+                        <td>22/OCT/2025</td>
+                        <td>9:15</td>
+                        <td>Profile Varified</td>
+                      </tr>
+                      <tr>
+                        <td>22/OCT/2025</td>
+                        <td>9:15</td>
+                        <td>Your Modification Is on Progress</td>
+                      </tr>
+                      <tr class="bg-danger">
+                        <td>22/OCT/2025</td>
+                        <td>9:15</td>
+                        <td>Your Application Have Been Rejected</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+              </div>
+              <div class="flex-div card1 vote middle">VOTE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="offcanvas1 Profile" id="PROFILE">
+  <div class="flex">
+    <div class="flex-div middle">
+      <div class="card1">
+        <div class="circle"></div>
+        <div class="" style="height: 124px;padding:  20px 0px; font-size: 30px;text-align: end;">ARATRICK NATH</div>
+        <div class="flex">
+          <div class="flex-div">
+            <div style="font-size: 8px;">DOB</div>
+            <div style="font-size: 15px;">DOB ++</div>
+          </div>
+          <div class="flex-div">
+            <div style="font-size: 8px;">Gender</div>
+            <div style="font-size: 15px;">Gender ++</div>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-div">
+            <div style="font-size: 8px;">Phone No</div>
+            <div style="font-size: 15px;">Phone No ++</div>
+          </div>
+          <div class="flex-div">
+            <div style="font-size: 8px;">Email</div>
+            <div style="font-size: 15px;">Email ++</div>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-div">
+            <div style="font-size: 8px;">Pin Code</div>
+            <div style="font-size: 15px;">Pin Code ++</div>
+          </div>
+          <div class="flex-div">
+            <div style="font-size: 8px;">State</div>
+            <div style="font-size: 15px;">State++</div>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-div">
+            <div style="font-size: 8px;">Address</div>
+            <div style="font-size: 15px;">Address ++</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-div middle" style="flex: 1%;">
+      <div style="flex: 1%;border-left: 1px solid rgba(255, 255, 255, 0.5);height: 50%;"></div>
+    </div>
+    <div class="flex-div middle">
+      <div class="flex" id="profile_update">
+          <!-- <div class="flex-div">
+            <div class="input-group has-validation">
+              <span class="input-group-text">@</span>
+              <div class="form-floating is-invaid input">
+                <input type="text" class="form-control " id="First_name" placeholder="First Name" autocomplete="off"  required>
+                <label for="First_name">First name</label>
+              </div>
+              <div class="invalid-feedback">
+                Please choose a First name.
+              </div>
+            </div>
+          </div> -->
+          <!-- js render -->
+      </div>
+    </div>
+  </div>
+  <div class="middle" style="height: 13px;padding: 20px 0;">
+    <button class="btn btn-primary" style="width: 80%;height: 50px;">SAVE</button>
+  </div>
+</div>
+
+
+
+<div class="offcanvas1 user " id="Reset">
+  <div class="middle" style="height: 100%;">
+    <div class="card1">
+      <div class="middle" style="height: 30%;">
+        <div class="circle"></div>
+      </div>
+      <hr>
+      <div class="input-group has-validation">
+        <span class="input-group-text">@</span>
+        <div class="form-floating is-invaid input">
+          <input type="text" class="form-control " id="Reset_user_id" placeholder="Username" autocomplete="off" value="ABC"  required>
+          <label for="Reset_user_id">Username</label>
+        </div>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="input-group has-validation">
+        <span class="input-group-text">@</span>
+        <div class="form-floating is-invaid input">
+          <input type="text" class="form-control " id="Reset_password" placeholder="Username" autocomplete="off" value="123"  required>
+          <label for="Reset_password">Password</label>
+        </div>
+        <div class="invalid-feedback">
+          Please Enter a Password.
+        </div>
+      </div>
+      <hr>
+      <div class="input-group has-validation">
+        <span class="input-group-text">@</span>
+        <div class="form-floating is-invaid input">
+          <input type="text" class="form-control " id="Reset_password_confirm" placeholder="Username" autocomplete="off" value="123"  required>
+          <label for="Reset_password_confirm">Confirm Password</label>
+        </div>
+        <div class="invalid-feedback">
+          Please Confirm a Password.
+        </div>
+      </div>
+      <hr>
+      <div>
+        <button class="btn btn-outline-light" style="width: 100%;height: 50px;">SAVE</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 
@@ -499,15 +1207,6 @@ body{
 
 
 
-
-
-
-
-<!--     
-<input type="text" id="user_id" value="ABC">
-<input type="text" id="password" value="123">
-
-<button onclick="fn()">BTN</button> -->
 </body>
 <script src="a.js"></script>
 <script>
@@ -540,6 +1239,42 @@ function offcanvas_Close(e,f)
 }
 
 
+function tabs(e,f){
+let elements=document.getElementById("tabs")
+elements=elements.querySelectorAll('.active');
+elements.forEach(element => {
+  element.classList.remove("active");
+});
+
+f.classList.add('active')
+
+
+
+  if(e=="HOME"){
+
+    offcanvas_Close('#Reset','bottom')
+    offcanvas_Close('#PROFILE','right')
+  }
+  else if(e=="PROFILE")
+  {
+    offcanvas_Close('#Reset','bottom')
+    offcanvas_Open('#PROFILE','right')
+  }
+  else if(e=="RESET")
+  {
+    offcanvas_Close('#PROFILE','right')
+    offcanvas_Open('#Reset','bottom')
+  }
+}
+
+
+
+
+
+
+
+
+
 // offcanvas_Close(".Login","bottom")
 
 // if(){
@@ -553,15 +1288,16 @@ function offcanvas_Close(e,f)
 
 function ui_register(){
 let hhh=[
-  {text:"First Name",id:"register_First_Name"},
-  {text:"Last Name",id:"register_Last_Name"},
-  {text:"Phone",id:"register_Phone"},
-  {text:"Email",id:"register_Email"},
-  {text:"Pin_Code",id:"register_Pin_Code"},
-  {text:"State",id:"register_State"},
-  {text:"Address 1",id:"register_Address_1"},
-  {text:"Address 2",id:"register_Address_2"},
+  {text:"First Name",id:"register_First_Name",icon:"person-circle"},
+  {text:"Last Name",id:"register_Last_Name",icon:"person-circle"},
+  {text:"Phone",id:"register_Phone",icon:"telephone"},
+  {text:"Email",id:"register_Email",icon:"envelope-at"},
+  {text:"Pin_Code",id:"register_Pin_Code",icon:"pin-map"},
+  {text:"State",id:"register_State",icon:"geo-alt"},
+  {text:"Address 1",id:"register_Address_1",icon:"house-door"},
+  // {text:"Address 2",id:"register_Address_2"},
 ];
+let id="profile_update"
 
 let t1=(e,f)=>{
   for(i=e;i<f;i++)
@@ -569,7 +1305,7 @@ let t1=(e,f)=>{
     let temp=
       '<div class="flex-div">'+
       '  <div class="input-group has-validation">'+
-      '    <span class="input-group-text">@</span>'+
+      '    <span class="input-group-text"><i class="bi bi-'+hhh[i].icon+'"></i></span>'+
       '    <div class="form-floating input">'+
       '      <input type="text" class="form-control " id="'+hhh[i].id+'" placeholder="State" autocomplete="off" oninput="ui_register_Data(\''+hhh[i].id+'\',this.value.toUpperCase())" required>'+
       '      <label for="'+hhh[i].id+'">'+hhh[i].text+'</label>'+
@@ -579,7 +1315,7 @@ let t1=(e,f)=>{
       '    </div>'+
       '  </div>'+
       '</div>';
-    document.getElementById("register-data").innerHTML+=temp
+    document.getElementById(id).innerHTML+=temp
   }
  }
 
@@ -587,7 +1323,7 @@ let t2=()=>{
   let temp=
   '<div class="flex-div">'+
     '<div class="input-group has-validation">'+
-      '<span class="input-group-text">@</span>'+
+      '<span class="input-group-text"><i class="bi bi-calendar"></i></span>'+
       '<div class="form-floating is-invaid input">'+
         '<input type="date" class="form-control " id="register_dob" placeholder="First Name" autocomplete="off" oninput="ui_register_Data(\'register_dob\',this.value)" required>'+
         '<label for="register_dob">DOB</label>'+
@@ -597,7 +1333,7 @@ let t2=()=>{
       '</div>'+
     '</div>'+
   '</div>';
-  document.getElementById("register-data").innerHTML+=temp
+  document.getElementById(id).innerHTML+=temp
  }
 
 let t3=()=>{
@@ -616,42 +1352,9 @@ let t3=()=>{
         'Please choose Gender.'+
       '</div>'+
   '</div>';
-  document.getElementById("register-data").innerHTML+=temp
+  document.getElementById(id).innerHTML+=temp
  }
 
-let t4=()=>{
-  let temp=
-  '<div class="flex-div">'+
-    '<div class="input-group has-validation">'+
-      '<span class="input-group-text">@</span>'+
-      '<div class="form-floating is-invaid input">'+
-        '<input type="text" class="form-control " id="register_username" placeholder="register_username" autocomplete="off" oninput="ui_register_Data(\'register_username\',this.value)"  required>'+
-        '<label for="register_username">Username</label>'+
-      '</div>'+
-      '<div class="invalid-feedback">'+
-        'Please choose a Username.'+
-      '</div>'+
-    '</div>'+
-  '</div>';
-  document.getElementById("register-data").innerHTML+='<hr style="Width:100%">'+temp;
- }
-
-let t5=()=>{
-  let temp=
-  '<div class="flex-div">'+
-    '<div class="input-group has-validation">'+
-      '<span class="input-group-text">@</span>'+
-      '<div class="form-floating is-invaid input">'+
-        '<input type="text" class="form-control " id="register_password" placeholder="register_password" autocomplete="off" oninput="ui_register_Data(\'register_password\',this.value)" required>'+
-        '<label for="register_password">Password</label>'+
-      '</div>'+
-      '<div class="invalid-feedback">'+
-        'Please choose a Password.'+
-      '</div>'+
-    '</div>'+
-  '</div>';
-  document.getElementById("register-data").innerHTML+=temp;
- }
 let t6=()=>{
   let temp=
   '<div class="flex-div">'+
@@ -661,16 +1364,15 @@ let t6=()=>{
       '</div>'+
     '</div>'+
   '</div>';
-  document.getElementById("register-data").innerHTML+=temp;
+  document.getElementById(id).innerHTML+=temp;
  }
 
 
 
   t1(0,2);
   t2();t3();
-  t1(2,8);
-  t4();t5();
-  t6();
+  t1(2,hhh.length);
+  // t6();
 }
 ui_register();
 
