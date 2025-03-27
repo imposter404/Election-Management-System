@@ -240,7 +240,7 @@ body{
   position: absolute;
   inset: 0px auto auto auto;
   padding: 50px 0;
-  z-index: 10;
+  z-index: 11;
   transition: all .5s ease-in-out;
   .flex{
     flex-direction:row ;
@@ -291,79 +291,28 @@ body{
 
 
 .register{
-  .flex{
-    height: 100%;
-    width: 100%;
-    justify-content: space-around;
-  }
-  .flex-div{
-    padding: 12px;
-    flex: 50%;
-  }
-  .card1{
-    width: 40dvw;
-    height: 350px;
-    background: rgb(56, 56, 56);
-    border-radius: 10px;
-    padding: 20px 20px;
+  z-index: 10;
+background: #00000000;
+backdrop-filter: blur(10px);
+.card1{
+    height: fit-content;
+    width: 400px;
+    background: rgba(63, 0, 63, 0.973);
+    border-radius: 20px;
+    padding: 30px;
     box-shadow: 0 0 0px 2px;
   }
-  .form.flex{
-    height: auto;
-    flex-wrap: wrap;
+  .flex{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
-  .register-data{
-    .flex{
-      height: fit-content;
-      flex-wrap: wrap;
-      flex-direction: row;
-    }
-    .flex-div{
-      flex:50% ;
-      height: auto;
-    }
-  }
-  .card1{
-    .middle{
-      flex-direction: column;
-    }
-    .flex-div{
-      padding: 4px;
-    }
+  .flex-div{
+    /* border: 1px solid red; */
+    width: 100%;
+    padding: 10px 0;
   }
 }
-
-.a{
-  width: 100px;
-  height: 100px;
-  position: fixed;
-  inset:0% 0% ;
-  background: blueviolet;
-  transition: all .5s ease;
-  .z{
-    height: 100px;
-    width: 100px;
-    margin: 20px;
-    background: brown;
-    position: fixed;
-    inset:50% 47% ;
-    /* display: none; */
-    transition: all .5s ease;
-    opacity: 0;
-  }
-  &:active{
-
-      position: fixed;
-      inset:50% 47% ;
-    scale: 2;
-    /* .z{
-      height: 100px;
-      opacity: 1;
-    } */
-  }
-}
-
-
 
 
 
@@ -762,7 +711,7 @@ body{
 </style>
 <body>
 
-<div class="middle" style="display: none;">
+<div class="middle">
   <div class="header" id="header">
     <div class="tab1 flex">
       <input class="flex-div" type="radio" name="tab" id="r1" >
@@ -823,45 +772,42 @@ body{
 <div class="offcanvas1-backdrop" style="z-index: 2;"></div>
 
 <div class="offcanvas1 register " id="Register">
-  <div class="middle" style="height: 100%;">
-    <div class="flex">
-      <div class="flex-div middle" style="overflow: auto;">
-        <div class="card1 middle" style="width: 100%; max-width: 500px;">
-          <div style="width: 100%;" id="ui_register_card">
-            <!-- <div class="flex">
-              <div class="flex-div">Name</div>
-              <div class="flex-div">12</div>
-            </div>-->
-            <!-- js render -->
+<div class="middle" style="height: 100%;">
+  <div class="card1">
+    <div class="middle" style="font-size: 40px;padding: 30px;">Sign In</div>
+    <hr>
+    <div class="flex middle">
+      <div class="flex-div">
+        <div class="input-group has-validation">
+          <span class="input-group-text">@</span>
+          <div class="form-floating is-invaid input">
+            <input type="text" class="form-control " id="register_user_id" placeholder="Username" autocomplete="off" value="ABC" oninput="ui_register_valid('register_user_id',this.value)" required>
+            <label for="user_id">Username</label>
+          </div>
+          <div class="invalid-feedback">
+            Please choose a username.
           </div>
         </div>
       </div>
-
-      <div class="flex-div middle" style="flex: 1%;">
-        <div style="height: 80%;background: #ffffff98;padding: 0;width: 1px;"></div>
-      </div>
-
-      <div class="flex-div middle register-data" style="flex-direction: column;">
-        <div class="flex" id="register-data" style="overflow: auto;">
-          <!-- <div class="flex-div">
-            <div class="input-group has-validation">
-              <span class="input-group-text">@</span>
-              <div class="form-floating is-invaid input">
-                <input type="text" class="form-control " id="First_name" placeholder="First Name" autocomplete="off"  required>
-                <label for="First_name">First name</label>
-              </div>
-              <div class="invalid-feedback">
-                Please choose a First name.
-              </div>
-            </div>
-          </div> -->
-
-          <!-- js render -->
-           <!-- not working -->
+      <div class="flex-div">
+        <div class="input-group has-validation">
+          <span class="input-group-text">@</span>
+          <div class="form-floating is-invaid input">
+            <input type="text" class="form-control " id="register_password" placeholder="Username" autocomplete="off" value="123" oninput="ui_register_valid('register_password',this.value)"  required>
+            <label for="password">Password</label>
+          </div>
+          <div class="invalid-feedback">
+            Please choose a Password.
+          </div>
         </div>
       </div>
     </div>
+    <hr>
+    <div style="padding: 20px 0;">
+      <button class="btn btn-warning" style="width: 100%;height: 50px;" onclick="register()">Sign In</button>
+    </div>
   </div>
+</div>
 </div>
 
 
@@ -909,7 +855,7 @@ body{
             </div>
           </div>
           <hr>
-          <div class="mid flex-div logout">
+          <div class="mid flex-div logout" onclick="Logout()">
             <div class="flex-div">
               <div class="tabs">
                 <div class="tab-icon middle"><i class="bi bi-box-arrow-right"></i></div>
@@ -1276,7 +1222,7 @@ function tabs(e,f){
 
 
 
-offcanvas_Open('#PROFILE','right')
+// offcanvas_Open('#PROFILE','right')
 
 
 
@@ -1473,26 +1419,6 @@ let invalid=(e)=>{
       invalid(e);
     }
   }
-  else if(e=="register_username"){
-    if(f==f.match(/[A-Z|a-z|0-9]+/))
-    {
-      valid(e)
-      register_data[e]=f
-    }
-    else{
-      invalid(e);
-    }
-  }
-  else if(e=="register_password"){
-    if(f==f.match(/[a-z|A-Z|0-9|*&#@$]+/))
-      {
-        valid(e)
-        register_data[e]=f
-      }
-    else{
-      invalid(e);
-    }
-  }
 
   register_data.register_name=register_data.register_First_Name.trim()+" "+register_data.register_Last_Name.trim();
   // console.log(register_data)
@@ -1535,11 +1461,6 @@ function ui_register_card(){
   document.getElementById("Profile_card_State").innerText=register_data.register_State
   document.getElementById("Profile_card_Address").innerText=register_data.register_Address_1
 }
-
-// ui_register_card();
-
-
-
 
 
 
@@ -1611,6 +1532,8 @@ function Login(){
 }
 
 // Login()
+
+let Profile
 function Re_Login(){
   if(sessionStorage.SessionToken!=undefined)
   {
@@ -1623,7 +1546,10 @@ function Re_Login(){
       setTimeout(()=>{
         document.getElementById("header").classList.add("hide")
         offcanvas_Close(".Login","top");
-      },1000)
+        offcanvas_Close("#Register","bottom")
+      },100)
+
+
     }
     else{
       sessionStorage.clear();
@@ -1632,6 +1558,18 @@ function Re_Login(){
   }
 }
 Re_Login();
+
+function Logout()
+{
+  sessionStorage.clear();
+  offcanvas_Open(".Login","top")
+  setTimeout(()=>{
+    location.reload()
+  },1000)
+}
+
+
+
 
 
 
@@ -1674,6 +1612,81 @@ function update(f){
   }
   return JSON.stringify(temp)
 }
+
+function register(){
+let count=0
+let validation=(e)=>{
+  if(! document.getElementById(e).classList.contains("is-valid")){
+      document.getElementById(e).parentElement.classList.add("is-invalid")
+      count++;
+    }
+    else{
+      document.getElementById(e).parentElement.classList.remove("is-invalid")
+    }
+  }
+  validation('register_user_id');
+  validation('register_password');
+  if(count==0)
+  {
+    let temp={
+      user_id:document.getElementById('register_user_id').value,
+      password:document.getElementById('register_password').value,
+    }
+    sendPHP(JSON.stringify(temp),"register");
+    console.log(response)
+    if(response=='invalid')
+    {
+      alert("User Already Exist")
+    }
+    else{
+      alert("Your Account Have been Created \n LOGIN");
+      document.getElementById('register_user_id').value="";
+      document.getElementById('register_password').value="";
+      offcanvas_Close("#Register","bottom")
+      document.getElementById("r1").checked=true;
+    }
+  }
+}
+
+
+
+function ui_register_valid(e,f)
+{
+  let valid=(e)=>{
+    document.getElementById(e).classList.add("is-valid");
+    document.getElementById(e).classList.remove("is-invalid");
+  }
+  let invalid=(e)=>{
+    document.getElementById(e).classList.add("is-invalid");
+    document.getElementById(e).classList.remove("is-valid");
+  }
+  if(e=="register_user_id"){
+    if(f==f.match(/[A-Z|a-z|0-9]+/))
+    {
+      valid(e)
+    }
+    else{
+      invalid(e);
+    }
+  }
+  else if(e=="register_password"){
+    if(f==f.match(/[a-z|A-Z|0-9|*&#@$]+/))
+      {
+        valid(e)
+      }
+    else{
+      invalid(e);
+    }
+  }
+}
+
+
+
+
+
+
+
+
 
 
 
