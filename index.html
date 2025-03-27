@@ -200,7 +200,7 @@ body{
   visibility: visible;
   transform: translateY(0%);
   background: url(img/a1.jpg) center/cover;
-  z-index: 0;
+  z-index: 10;
 }
 
 
@@ -774,9 +774,8 @@ body{
   </div>
 </div>
 
-<div class="offcanvas1 Login" style="display: none;">
+<div class="offcanvas1 Login">
   <div class="middle">
-
     <div class="card1">
       <div class="flex" style="height: 100%;">
         <div class="flex-div" style="margin: 20px;">
@@ -1395,8 +1394,8 @@ register_Email:"",
 register_Pin_Code:"",
 register_State:"",
 register_Address_1:"",
-register_username:"",
-register_password:"",
+// register_username:"",
+// register_password:"",
 register_name:"",
 }
 
@@ -1455,7 +1454,7 @@ let invalid=(e)=>{
     }
   }
   else if(e=="register_Email"){
-    if(f==f.match(/[A-Z|a-z|0-9]+/))
+    if(f==f.match(/[A-Z|a-z|0-9.]+/))
     {
       valid(e)
       register_data[e]=f.toLowerCase().trim()+"@gmail.com"
@@ -1517,7 +1516,10 @@ function ui_register_Data_Validation(){
   }
   if(count==0)
   {
-    console.table(register_data)
+    // sendPHP(JSON.stringify(register_data),"update");
+    sendPHP(update(register_data),"update");
+    // console.log(response);
+    alert("Updated")
   }
   console.table(count)
 }
@@ -1657,6 +1659,21 @@ Re_Login();
 //     }
 // }, 1000); // Check every 10 seconds
 
+
+
+
+
+function z(){
+  sendPHP(update(register_data),"update");
+  console.log(response);
+}
+
+function update(f){
+  let temp={SessionToken:"gg",
+    data:f
+  }
+  return JSON.stringify(temp)
+}
 
 
 
