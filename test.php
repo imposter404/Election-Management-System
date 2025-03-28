@@ -1,15 +1,15 @@
 <?php
 
-// if (!extension_loaded('mongodb')) {
-//     die('MongoDB extension is not loaded');
-// }
+if (!extension_loaded('mongodb')) {
+    die('MongoDB extension is not loaded');
+}
 
-// require(__DIR__."/phpmongodb/vendor/autoload.php");
+require(__DIR__."/phpmongodb/vendor/autoload.php");
 
-// $client = new MongoDB\Client("mongodb://localhost:27017"); // Replace with your connection string
+$client = new MongoDB\Client("mongodb://localhost:27017"); // Replace with your connection string
 
-// $database = $client->selectDatabase('Project');;
-// $collection = $database->selectCollection('user');
+$database = $client->selectDatabase('Project');;
+$collection = $database->selectCollection('user');
 
 
 // // $collection->update(array("password"=>"123"),array('$set'=>array("password"=>"555")));
@@ -24,11 +24,16 @@
 // echo "Modified " . $result->getModifiedCount() . " document(s)\n";
 
 
-$q=$_REQUEST['q'];
-$r=json_decode($q);
+// $q=$_REQUEST['q'];
+// $r=json_decode($q);
 
 session_start();
-echo $_SESSION["Token"];
+// echo $_SESSION["Token"];
+
+
+
+
+
 // if($r==$_SESSION["Token"])
 // {
 //     echo $_SESSION["Token"];
@@ -37,4 +42,44 @@ echo $_SESSION["Token"];
 //     echo "no";
 // }
 // session_destroy();
+
+
+
+// $document = $collection->findOne(['user_id'=>"ABC"]);
+
+// if($document)
+// {
+// // echo  key_exists("name",$document);
+// if(isset($document->passwor))
+// {
+//     echo "ff";
+// }
+// else{
+//     echo "gg";
+// }
+// //  echo "hi";
+// print_r($document);
+// }
+// print_r(json_encode($a));
+
+// class obj{} //object define
+// $a=new obj();
+// $a->g=new obj();
+// $a->g->k=10;
+// $user_hash=hash('sha256','aaa');
+// // $password_hash=hash('sha256',$r->password);
+
+
+// $document = $collection->findOne(['user.user_id' => 'aaa']);
+
+$document = $collection->findOne(['_id' => $_SESSION["ID"]]);
+
+print_r(json_encode($document));
+// print_r(json_encode($a));
+
+
+
+
+
+
 ?>
