@@ -8,7 +8,7 @@ require(__DIR__."/phpmongodb/vendor/autoload.php");
 
 $client = new MongoDB\Client("mongodb://localhost:27017"); // Replace with your connection string
 
-$database = $client->selectDatabase('Project');;
+$database = $client->selectDatabase('Project');
 $collection = $database->selectCollection('user');
 
 
