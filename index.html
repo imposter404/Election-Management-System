@@ -698,15 +698,20 @@ backdrop-filter: blur(10px);
 }
 
 .Vote{
-  background: rgb(39, 39, 39);
-  inset: 0 0 0 0;
-  transform: translateY(0%);
+  /* background: rgb(39, 39, 39); */
+  background: transparent;
+  backdrop-filter: blur(41px);
+  inset: 0 0 0 0; 
+  /* transform: translateY(0%); */
   visibility: visible;
   border-radius:0 ;
-  /* transition: display 1s ease; */
+  z-index: 3;
+  opacity: 0;
+  transition: all 1s ease;
   .card1{
     /* height:550px; */
     height: fit-content;
+    position: relative;
     width: 400px;
     background: rgb(61, 0, 53);
     padding: 30px;
@@ -825,9 +830,6 @@ backdrop-filter: blur(10px);
       }
     }
   }
-
-
-
 }
 
 
@@ -1133,7 +1135,7 @@ backdrop-filter: blur(10px);
                 </div>
                 </div>
               </div>
-              <div class="flex-div card1 vote middle">VOTE</div>
+              <div class="flex-div card1 vote middle" onclick="offcanvas_Open('.Vote','right')">VOTE</div>
             </div>
           </div>
         </div>
@@ -1269,6 +1271,7 @@ backdrop-filter: blur(10px);
 <div class="offcanvas1 Vote">
   <div class="middle" style="height: 100%;">
     <div class="card1">
+      <button type="button" class="btn-close btn-close-white" style="position: absolute;right: 20px;top: 20px;" onclick="offcanvas_Close('.Vote','right')"></button>
       <div class="middle" style="font-size: 40px;padding: 10px 0;">Vote</div>
       <hr>
       <div class="flex">
@@ -1795,6 +1798,17 @@ function load_profile()
   document.getElementById('home_secured_user_id').innerHTML=user_Profile.user_id;
 
 }
+
+
+  
+
+
+
+
+
+
+
+
 // {"name":"EFEJF","dob":"1999-02-07","gender":"FEMALE","phone_no":"45546","email":"efse@gmail.com","pin_code":"4554","state":"WB","Address":"ESSFSEF","Vo_Id":"V20250306490"}
 
 
@@ -1913,9 +1927,7 @@ function range(e)
     e.value=0;
   }
   else{
-    document.getElementById('Vote_tab1').classList.add('hide');
-    document.getElementById('Vote_tab2').classList.add('hide');
-    document.getElementById('Vote_tab3').classList.remove('hide');
+    Vote()
   }
 }
 
@@ -1925,14 +1937,31 @@ function Vote(){
   }
   let vote={
     vote:"true",
-    party:"A"
+    party:""
+  }
+  if(document.getElementById('Vote_tab2_r1').checked==true){
+    vote.party='A'
+  }
+  else if(document.getElementById('Vote_tab2_r2').checked==true){
+    vote.party='B'
+  }
+  else if(document.getElementById('Vote_tab2_r3').checked==true){
+    vote.party='C'
+  }
+  else if(document.getElementById('Vote_tab2_r4').checked==true){
+    vote.party='D'
   }
   temp.data=vote
+
+
   sendPHP(JSON.stringify(temp),"vote");
   response=JSON.parse(response);
   console.log(response);
   if(response.response=="201"){
-    alert("Created")
+    // alert("Created")
+    document.getElementById('Vote_tab1').classList.add('hide');
+    document.getElementById('Vote_tab2').classList.add('hide');
+    document.getElementById('Vote_tab3').classList.remove('hide');
   }
   else if(response.response=="405"){
     alert("User Already Voted")
@@ -1940,24 +1969,6 @@ function Vote(){
   else if(response.response=="401"){
     alert("unauthorized")
   }
-
-  // if(vote)
-
-
-
-  // return JSON.stringify(temp)
-  // if(document.getElementById('Vote_tab2_r1').checked==true){
-  //   // Vote()
-  // }
-  // else if(document.getElementById('Vote_tab2_r1').checked==true){
-  //   // Vote()
-  // }
-  // else if(document.getElementById('Vote_tab2_r1').checked==true){
-  //   // Vote()
-  // }
-  // else if(document.getElementById('Vote_tab2_r1').checked==true){
-  //   // Vote()
-  // }
 
 }
 
