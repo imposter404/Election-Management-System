@@ -22,6 +22,10 @@ $r=json_decode($q);
 class obj{} //object define
 $a=new obj();
 $b=new obj();
+$voting=new obj();
+
+
+
 
 if($r->SessionToken !="")
 {
@@ -31,6 +35,8 @@ if($r->SessionToken !="")
         $document = $collection->findOne(['_id' => $_SESSION["ID"]]);
         profile($document);
         $b->profile=$a;
+        voting_details();
+        $b->voting=$voting;
         // print_r(json_encode($document));
     }
     else{
@@ -51,12 +57,12 @@ else{
 function profile($e){
     global $collection;
     global $a;
-    global $document;
+    // global $document;
 
     $document=$e;
     $a->profile=new obj();
-    $a->profile->name=$document->name->first_Name;
-    $a->profile->name=$document->name->last_Name;
+    $a->profile->first_Name=$document->name->first_Name;
+    $a->profile->last_Name=$document->name->last_Name;
     $a->profile->dob=$document->date_of_birth;
     $a->profile->gender=$document->gender;
     $a->profile->phone_no=$document->phone_no;
@@ -66,7 +72,29 @@ function profile($e){
     $a->profile->Address=$document->address->Address;
     $a->profile->Vo_Id=$document->Vo_Id;
     $a->profile->user_id=$document->user->user_id;
+    $a->profile->log=$document->log;
 }
+
+
+function voting_details(){
+    global $voting;
+    global $database;
+
+    $collection = $database->selectCollection('status');
+
+    $document = $collection->findOne(['_id'=>new MongoDB\BSON\ObjectId('67c9b12182f7ea4dfe81caeb')]);
+    if($document)
+    {
+        $voting->Start_Date=$document->Start_Date;
+        $voting->End_Date=$document->End_Date;
+        $voting->Start_Time=$document->Start_Time;
+        $voting->End_Time=$document->End_Time;
+        $voting->Status=$document->Status;
+    }
+}
+
+
+
 
 
 
@@ -110,8 +138,9 @@ if($document)
 else{
     $a->user_id='false';
 }
-print_r(json_encode($a));
 
+
+print_r(json_encode($a));
 }
 
 

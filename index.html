@@ -458,6 +458,19 @@ backdrop-filter: blur(10px);
         gap: 0;
         .flex-div{
           height: fit-content;
+          &.flex{
+            flex-direction: row;
+            overflow: hidden;
+            justify-content: left;
+            transition:all .6s ease-out;
+            text-wrap: nowrap;
+            &.hide{
+              width: 120px;
+            }
+            .flex-div{
+              flex-direction: column;
+            }
+          }
         }
       }
     }
@@ -600,6 +613,10 @@ backdrop-filter: blur(10px);
       width: 40%;
       background: transparent;
       backdrop-filter: blur(40px);
+      .flex-div.flex.hide{
+        width: 300px !important;
+        /* border: 1px solid red; */
+      }
     }
   }
 }
@@ -1013,16 +1030,47 @@ backdrop-filter: blur(10px);
           <div class="flex-div">
             <div class="flex">
               <div class="flex-div card1 wellcome middle"> Welcome Back</div>
-
               <div class="flex-div card1 time middle">
-                <div class="flex middle">
-                  <div class="flex-div" style="font-size: 15px;">Start Date</div>
-                  <div class="flex-div" style="font-size: 30px;">8 OCT</div>
-                  <hr style="width: 80%;">
-                  <div class="flex-div" style="font-size: 15px;">Start Date</div>
-                  <div class="flex-div" style="font-size: 30px;">9 OCT</div>
+                <div class="flex middle" id="Time">
+                  <div class="flex-div flex hide">
+                    <div class="flex-div">
+                      <div style="font-size: 15px;">Start Date</div>
+                      <div style="font-size: 30px;">---</div>
+                    </div>
+                    <div class="flex-div" style="width: 200px;">
+                      <hr style="width: 100%;">
+                    </div>
+                    <div class="flex-div">
+                      <div style="font-size: 15px;">End Time</div>
+                      <div style="font-size: 30px;">---</div>
+                    </div>
+                  </div>
+                  <div class="flex-div" style="width: 100%;"><hr style="width: 100%;"></div>
+                  <div class="flex-div flex hide">
+                    <div class="flex-div">
+                      <div style="font-size: 15px;">End Date</div>
+                      <div style="font-size: 30px;">---</div>
+                    </div>
+                    <div class="flex-div" style="width: 200px;">
+                      <hr style="width: 100%;">
+                    </div>
+                    <div class="flex-div">
+                      <div style="font-size: 15px;">End Time</div>
+                      <div style="font-size: 30px;">---</div>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+
+
+
+
+
+
+
+
+
 
               <div class="flex-div card1 approved middle ">
                 <div>
@@ -1100,7 +1148,7 @@ backdrop-filter: blur(10px);
                 <!-- <div class="line"></div> -->
                 <div class="flex" style="width: 100%;">
                   <div class="flex-div">
-                  <table class="table text-light text-nowrap table-borderless">
+                  <table class="table text-light text-nowrap table-borderless" id="table_status">
                     <tr style="height: 46px;"><td></td></tr>
                     <tr><td><i class="bi bi-check-lg complete"></i>Complete</td></tr>
                     <tr><td colspan="2"><i class="bi bi-arrow-clockwise ongoing"></i>Ongoing</td></tr>
@@ -1108,7 +1156,7 @@ backdrop-filter: blur(10px);
                   </table>
                   </div>
                   <div class="flex-div">
-                  <table class="table text-light text-nowrap table-borderless">
+                  <table class="table text-light text-nowrap table-borderless" id="table_data">
                     <tbody>
                       <tr>
                         <td>Date</td>
@@ -1704,6 +1752,7 @@ function sendPHP(e,f) {
 
 
 let obj
+let user_Profile
 
 function Login(){
   // obj={
@@ -1729,8 +1778,8 @@ function Login(){
       alert("Invalid Password")
     }
     else{
-      // user_Profile=response.profile
-      // load_profile();
+      user_Profile=response.profile
+      load_profile();
       if(response.SessionToken!=undefined)
       {
         sessionStorage.setItem("SessionToken",response.SessionToken);
@@ -1744,8 +1793,7 @@ function Login(){
 }
 
 // Login()
-
-let user_Profile
+let voting_details
 function Re_Login(){
   if(sessionStorage.SessionToken!=undefined)
   {
@@ -1756,6 +1804,7 @@ function Re_Login(){
     if(response.SessionToken=="valid")
     {
       user_Profile=response.profile.profile;
+      voting_details=response.voting
       load_profile();
       // user_Profile=response.profile
       setTimeout(()=>{
@@ -1786,7 +1835,13 @@ function Logout()
 
 function load_profile()
 {
-  document.getElementById('home_profile_void').innerHTML="11";
+  user_Profile.name=user_Profile.first_Name+" "+user_Profile.last_Name
+  if(user_Profile.Vo_Id){
+    document.getElementById('home_profile_void').innerHTML=user_Profile.Vo_Id;
+  }
+  else{
+    document.getElementById('home_profile_void').innerHTML="---";
+  }
   document.getElementById('home_profile_name').innerHTML=user_Profile.name;
   document.getElementById('home_profile_dob').innerHTML=user_Profile.dob;
   document.getElementById('home_profile_gender').innerHTML=user_Profile.gender;
@@ -1796,14 +1851,84 @@ function load_profile()
   document.getElementById('home_profile_state').innerHTML=user_Profile.state;
   document.getElementById('home_profile_address').innerHTML=user_Profile.Address;
   document.getElementById('home_secured_user_id').innerHTML=user_Profile.user_id;
-
 }
 
 
   
+function load_timeline(){
+
+  let load_date=()=>{
+    document.getElementById('Time').innerHTML=""
+    let temp1={}
+    let l=voting_details.Start_Date.split('/')
+    temp1.Start_Date=l[0]+'/'+l[1];
+    l=voting_details.End_Date.split('/')
+    temp1.End_Date=l[0]+'/'+l[1];
+
+    let temp=
+    '<div class="flex-div flex hide">'+
+      '<div class="flex-div">'+
+        '<div style="font-size: 15px;">Start Date</div>'+
+        '<div style="font-size: 30px;">'+temp1.Start_Date+'</div>'+
+      '</div>'+
+      '<div class="flex-div" style="width: 200px;">'+
+        '<hr style="width: 100%;">'+
+      '</div>'+
+      '<div class="flex-div">'+
+        '<div style="font-size: 15px;">Start Time</div>'+
+        '<div style="font-size: 30px;">'+voting_details.Start_Time+'</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="flex-div" style="width: 100%;"><hr style="width: 100%;"></div>'+
+    '<div class="flex-div flex hide">'+
+      '<div class="flex-div">'+
+        '<div style="font-size: 15px;">End Date</div>'+
+        '<div style="font-size: 30px;">'+temp1.End_Date+'</div>'+
+      '</div>'+
+      '<div class="flex-div" style="width: 200px;">'+
+        '<hr style="width: 100%;">'+
+      '</div>'+
+      '<div class="flex-div">'+
+        '<div style="font-size: 15px;">End Time</div>'+
+        '<div style="font-size: 30px;">'+voting_details.End_Time+'</div>'+
+      '</div>'+
+    '</div>';
+    document.getElementById('Time').innerHTML=temp
+  }
+  load_date();
+
+  let log=()=>{
+    let table_status=document.getElementById('table_status');
+    
+    let table_data=document.getElementById('table_data');
+    for(i=0;i<user_Profile.log.length;i++)
+    {
+      let tr_data=table_data.insertRow(1)
+      tr_data.insertCell(0).innerHTML=user_Profile.log[i].date
+      tr_data.insertCell(1).innerHTML=user_Profile.log[i].time
+      tr_data.insertCell(2).innerHTML=user_Profile.log[i].update
 
 
+      let tr=table_status.insertRow(1)
+      if(user_Profile.log[i].status=='200')
+      {
+        tr.insertCell(0).innerHTML='<i class="bi bi-check-lg complete"></i>Complete'
+      }
+      else if(user_Profile.log[i].status=='304')
+      {
+        tr.insertCell(0).innerHTML='<i class="bi bi-arrow-clockwise ongoing"></i>Ongoing'
+      }
+      else if(user_Profile.log[i].status=='406')
+      {
+        tr.insertCell(0).innerHTML='<i class="bi bi-x-lg rejected"></i>Rejected'
+        tr_data.classList.add("bg-danger")
+      }
 
+    }
+  }
+  log();
+}
+load_timeline()
 
 
 

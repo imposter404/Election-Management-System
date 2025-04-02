@@ -1,71 +1,67 @@
+<?php
+if (!extension_loaded('mongodb')) {
+    die('MongoDB extension is not loaded');
+}
+
+require(__DIR__."/phpmongodb/vendor/autoload.php");
+
+$client = new MongoDB\Client("mongodb://localhost:27017"); // Replace with your connection string
+
+$database = $client->selectDatabase('Project');
+$collection = $database->selectCollection('user');
 
 
+// $a=[1,2,3];
+// array_push($a,4);
+
+class obj{}
+// $z=new obj();
+// $b=new obj();
+// $b->tim="1/20";
+// $b->log="200";
+
+// array_push($a,$b);
+
+// print_r($a);
 
 
-// class obj{} //object define
-// $a=new obj();
-
-// $a->g=10;
-// $a->h=20;
-
-// $name=new obj();
-// $name->first_Name='John';
-// $name->last_Name ='Doe';
-
-// $user=new obj();
-// $user->user_id="a123";
-// $user->user_id_hash="001";
-// $user->password='a123';
-// $user->password_hash='200';
-
-
-
-// Example: Insert a document
 // $insertResult = $collection->insertOne([
-//     'voter_id'=>'ABCD1234',
-//     'name'=>$name,
-//     'email' => 'john@example.com',
-//     'phone_no' => '123456789',
-//     'gender' => 'Male',
-//     'date_of_birth' => '21/5/2000',
-//     'user'=>$user,
-//     'SessionToken'=>''
+//     'log'=>$a
 // ]);
-
-// echo "Inserted document with ID: " . $insertResult->getInsertedId() . "\n";
-
-// $ao=session_create_id();
-
-// echo $ao
+// session_start();
 
 
 
-// $document = $collection->findOne(['voter_id'=>"ABCD123"]);
-
-
-// $voter_id="V".date("Ymd").rand(0,1000);
-// print_r($voter_id);
-
-
-// $document = $collection->findOne(['user.user_id_hash'=>"001",'user.password_hash'=>"200"]);
-// // $document = $collection->find([' type' => 'core']);
-
+// $document = $collection->findOne(['_id'=>$_SESSION["ID"]]);
 // if($document)
 // {
-//     echo "found";
-// }
-// else{
-//     echo "  nooot found";
-// }
+//     echo "hi";
+//     $z->log=$document->log;
+//     print_r($z);
+// }    $collection = $database->selectCollection('status');
+
+$voting=new obj();
+
+$collection = $database->selectCollection('status');
+if($document)
+{
+    $voting->Start_Date=$document->Start_Date;
+    $voting->End_Date=$document->End_Date;
+    $voting->Start_Time=$document->Start_Time;
+    $voting->End_Time=$document->End_Time;
+    $voting->Status=$document->Status;
+}
+
+print_r($document->_id);
+print_r($voting);
 
 
 
 
-// foreach($document as $r){
-//     print_r($r["name"]);
-// }
-// echo $document->name->g;
+// echo 'valid';
 
-// print_r($document->name);
-// print_r($document->email);
 
+
+
+
+?>
