@@ -1624,6 +1624,8 @@ ui_register();
 
 
 
+let month=["JAN","FEB","MAR","APR","MAY","JUN","JULY","AUG","SEP","OCT","NOV","DEC"];
+
 let register_data={
 register_First_Name:"",
 register_Last_Name:"",
@@ -1677,7 +1679,8 @@ let invalid=(e)=>{
     if(f != "0")
     {
       valid(e)
-      register_data[e]=f
+      f=f.split('-');
+      register_data[e]=f[2]+'/'+month[Number(f[1])]+'/'+f[0];
     }
     else{
       invalid(e);
@@ -1848,7 +1851,7 @@ function Re_Login(){
     response=JSON.parse(response);
     if(response.SessionToken=="valid")
     {
-      user_Profile=response.profile.profile;
+      user_Profile=response.profile;
       voting_details=response.voting
       load_profile();
       // user_Profile=response.profile
@@ -1880,24 +1883,23 @@ function Logout()
 
 function load_profile()
 {
-  user_Profile.name=user_Profile.first_Name+" "+user_Profile.last_Name
+  user_Profile.name.name=user_Profile.name.first_Name+" "+user_Profile.name.last_Name
   if(user_Profile.Vo_Id){
     document.getElementById('home_profile_void').innerHTML=user_Profile.Vo_Id;
   }
   else{
     document.getElementById('home_profile_void').innerHTML="---";
   }
-  document.getElementById('home_profile_name').innerHTML=user_Profile.name;
-  document.getElementById('home_profile_dob').innerHTML=user_Profile.dob;
+  document.getElementById('home_profile_name').innerHTML=user_Profile.name.name;
+  document.getElementById('home_profile_dob').innerHTML=user_Profile.date_of_birth;
   document.getElementById('home_profile_gender').innerHTML=user_Profile.gender;
   document.getElementById('home_profile_phone').innerHTML=user_Profile.phone_no;
   document.getElementById('home_profile_email').innerHTML=user_Profile.email;
-  document.getElementById('home_profile_pin_code').innerHTML=user_Profile.pin_code;
-  document.getElementById('home_profile_state').innerHTML=user_Profile.state;
-  document.getElementById('home_profile_address').innerHTML=user_Profile.Address;
-  document.getElementById('home_secured_user_id').innerHTML=user_Profile.user_id;
+  document.getElementById('home_profile_pin_code').innerHTML=user_Profile.address.pin_code;
+  document.getElementById('home_profile_state').innerHTML=user_Profile.address.state;
+  document.getElementById('home_profile_address').innerHTML=user_Profile.address.Address;
+  document.getElementById('home_secured_user_id').innerHTML=user_Profile.user.user_id;
 }
-
 
   
 function load_timeline(){
@@ -1975,7 +1977,7 @@ function load_timeline(){
 
   let approved_Profile=()=>{
     document.getElementById("Approved").innerHTML=""
-    if(1==1)
+    if(user_Profile.name.name)
     {
       let temp=
       '<div>'+
@@ -2002,7 +2004,7 @@ function load_timeline(){
   approved_Profile();
 
   let home_vote_ui=()=>{
-    if(1==0){
+    if(user_Profile.voted=='true'){
         home_vote.classList.add('show')
     }
   }

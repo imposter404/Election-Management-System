@@ -13,7 +13,8 @@ $collection = $database->selectCollection('user');
 
 // $a=[1,2,3];
 // array_push($a,4);
-
+// $q=$_REQUEST['q'];
+// $r=json_decode($q);
 class obj{}
 // $z=new obj();
 // $b=new obj();
@@ -53,15 +54,17 @@ $document = $collection->findOne(['_id'=>new MongoDB\BSON\ObjectId($_SESSION["ID
 //     $voting->Status=$document->Status;
 // }
 
-unset($document->user);
-unset($document->_id);
-$document=json_encode($document);
-print_r($document);
+// unset($document->user);
+// unset($document->_id);
+// $document=json_encode($document);
+// print_r($document);
 // print_r($voting);
 
+// $month=["JAN","FEB","MAR","APR","MAY","JUN","JULY","AUG","SEP","OCT","NOV","DEC"];
 
+// echo $month[intval(date("m"))-1];
 
-
+// echo date("d").'/'.$month[intval(date("m"))-1].'/'.date("Y");
 // echo 'valid';
 
 

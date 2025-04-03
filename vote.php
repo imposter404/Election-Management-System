@@ -41,7 +41,8 @@ $a=new obj();
 
 
 $document = $collection_user->findOne(['_id' => $_SESSION["ID"]]);
-$date=date("d/m/y");
+$month=["JAN","FEB","MAR","APR","MAY","JUN","JULY","AUG","SEP","OCT","NOV","DEC"];
+$date=date("d").'/'.$month[intval(date("m"))-1].'/'.date("Y");
 
 if($_SESSION["Token"]==$r->SessionToken)
 {

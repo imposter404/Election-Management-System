@@ -60,21 +60,26 @@ function profile($e){
     // global $document;
 
     $document=$e;
-    $a->profile=new obj();
-    $a->profile->first_Name=$document->name->first_Name;
-    $a->profile->last_Name=$document->name->last_Name;
-    $a->profile->dob=$document->date_of_birth;
-    $a->profile->gender=$document->gender;
-    $a->profile->phone_no=$document->phone_no;
-    $a->profile->email=$document->email;
-    $a->profile->pin_code=$document->address->pin_code;
-    $a->profile->state=$document->address->state;
-    $a->profile->Address=$document->address->Address;
-    $a->profile->Vo_Id=$document->Vo_Id;
-    $a->profile->user_id=$document->user->user_id;
-    $a->profile->log=$document->log;
+    // $a->profile=new obj();
+    // $a->profile->first_Name=$document->name->first_Name;
+    // $a->profile->last_Name=$document->name->last_Name;
+    // $a->profile->dob=$document->date_of_birth;
+    // $a->profile->gender=$document->gender;
+    // $a->profile->phone_no=$document->phone_no;
+    // $a->profile->email=$document->email;
+    // $a->profile->pin_code=$document->address->pin_code;
+    // $a->profile->state=$document->address->state;
+    // $a->profile->Address=$document->address->Address;
+    // $a->profile->Vo_Id=$document->Vo_Id;
+    // $a->profile->user_id=$document->user->user_id;
+    // $a->profile->log=$document->log;
     // $a=$collection;
     // //editing here
+    unset($document->user->user_id_hash);
+    unset($document->user->password);
+    unset($document->user->password_hash);
+    unset($document->_id);
+    $a=$document;
 }
 
 
