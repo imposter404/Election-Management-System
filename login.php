@@ -73,6 +73,8 @@ function profile($e){
     $a->profile->Vo_Id=$document->Vo_Id;
     $a->profile->user_id=$document->user->user_id;
     $a->profile->log=$document->log;
+    // $a=$collection;
+    // //editing here
 }
 
 

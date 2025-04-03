@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vote</title>
 </head>
 <link rel="stylesheet" href="CDN/bootstrap.min.css">
 <link rel="stylesheet" href="CDN/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
@@ -15,6 +15,25 @@
   /* border: .5px solid red;  */
   box-sizing: border-box;
 }
+* {
+        &::-webkit-scrollbar{
+            /* width: 10px; */
+            display: none;
+        }
+        /* &::-webkit-scrollbar-track{
+            border-radius: 10px;
+            background: #00000069;
+        }
+        &::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            background: hsla(0, 0%, 100%, 0.5);
+            transition: all 1s ease;
+        }
+        &::-webkit-scrollbar-thumb:hover{
+            background: hsl(0, 0%, 100%);
+        } */
+}
+
 body{
   /* background: black; */
   background: rgb(29, 29, 29);
@@ -475,9 +494,13 @@ backdrop-filter: blur(10px);
       }
     }
     &.approved{
-      background: green;
-      background: rgb(253, 55, 55);
       width: 15%;
+      &.green{
+        background: green;
+      }
+      &.red{
+        background: #fd3737;
+      }
       .checked{
         font-size: 50px;
         background: green;
@@ -486,7 +509,7 @@ backdrop-filter: blur(10px);
         height: 100px;
         border-radius: 50%;
       }
-      .checked{
+      .rejected{
         font-size: 50px;
         background: rgb(253, 55, 55);
         color: white;
@@ -575,9 +598,12 @@ backdrop-filter: blur(10px);
       }
       .flex{
         justify-content: space-around;
+        padding: 0px;
         gap:0;
+        overflow-y: auto;
         .flex-div{
           padding: 0px;
+          align-items: baseline;
         }
       }
       .complete{
@@ -604,14 +630,25 @@ backdrop-filter: blur(10px);
     }
     &.vote{
       background: red;
+      position: relative;
       width: 20%;
+      flex-direction: column;
+      .lock{
+        position: absolute;inset: 0 0 0 0;
+        background: linear-gradient(0deg, black, transparent);
+        flex-direction: column;
+        visibility: hidden;
+      }
+      .show{
+        visibility: visible;
+      }
       &:hover{
         width: 20%;
       }
     }
     &:hover{
       width: 40%;
-      background: transparent;
+      background: transparent !important;
       backdrop-filter: blur(40px);
       .flex-div.flex.hide{
         width: 300px !important;
@@ -1072,9 +1109,9 @@ backdrop-filter: blur(10px);
 
 
 
-              <div class="flex-div card1 approved middle ">
+              <div class="flex-div card1 approved middle" id="Approved">
                 <div>
-                  <div class="middle checked">
+                  <div class="middle rejected">
                     <!-- <i class="bi bi-check-lg"></i> -->
                     <i class="bi bi-x-lg"></i>
                   </div>
@@ -1083,37 +1120,40 @@ backdrop-filter: blur(10px);
                 </div>
               </div>
 
+
+
+
               <div class="flex-div card1 profile">
                 <div style="height: 100%;">
                   <div class="box middle">
                     <div class="circle middle"></div>
                   </div>
                   <hr style="width: 100%;">
-                  <div class="middle" style="font-size: 30px;" id="home_profile_name">ARATRICK NATH</div>
+                  <div class="middle" style="font-size: 30px;" id="home_profile_name">---</div>
                   <div style="padding: 20px 40px;overflow: hidden;">
                     <div style="font-size: 10px;">Voter ID <i class="bi bi-card-text"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_void">Voter ID++</div>
+                    <div style="font-size: 20px;" id="home_profile_void"> --- </div>
                     <hr>
                     <div style="font-size: 8px;">DOB <i class="bi bi-calendar"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_dob">DOB ++</div>
+                    <div style="font-size: 20px;" id="home_profile_dob">---</div>
                     <hr>
                     <div style="font-size: 8px;">Gender <i class="bi bi-person-walking"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_gender">Gender ++</div>
+                    <div style="font-size: 20px;" id="home_profile_gender">---</div>
                     <hr>
                     <div style="font-size: 8px;">Phone No <i class="bi bi-telephone"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_phone">Phone No ++</div>
+                    <div style="font-size: 20px;" id="home_profile_phone">---</div>
                     <hr>
                     <div style="font-size: 8px;">Email <i class="bi bi-envelope-at"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_email">Email ++</div>
+                    <div style="font-size: 20px;" id="home_profile_email">---</div>
                     <hr>
                     <div style="font-size: 8px;">Pin Code <i class="bi bi-pin-map"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_pin_code">Pin Code ++</div>
+                    <div style="font-size: 20px;" id="home_profile_pin_code">---</div>
                     <hr>
                     <div style="font-size: 8px;">State <i class="bi bi-geo-alt"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_state">State++</div>
+                    <div style="font-size: 20px;" id="home_profile_state">---</div>
                     <hr>
                     <div style="font-size: 8px;">Address <i class="bi bi-house-door"></i></div>
-                    <div style="font-size: 20px;" id="home_profile_address">Address ++</div>
+                    <div style="font-size: 20px;" id="home_profile_address">---</div>
                     <div style="transform: translateX(-40px);" onclick="tabs('PROFILE',this)"><i class="bi bi-pencil-square" style="font-size: 15px;padding: 10px 0;"></i></div>
                   </div>
                 </div>
@@ -1183,7 +1223,15 @@ backdrop-filter: blur(10px);
                 </div>
                 </div>
               </div>
-              <div class="flex-div card1 vote middle" onclick="offcanvas_Open('.Vote','right')">VOTE</div>
+              <div class="flex-div card1 vote middle" onclick="offcanvas_Open('.Vote','right')">
+                <div class="middle lock" id="home_vote">
+                  <div>
+                    <i class="bi bi-lock" style="opacity: 5;font-size: 50px;"></i>
+                  </div>
+                  <div>You Have Already Voted</div>
+                </div>
+                <div>VOTE</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1199,41 +1247,41 @@ backdrop-filter: blur(10px);
       <div class="card1">
         <div class="circle"></div>
         <div id="Profile_card_data">
-          <div style="height: 124px;padding:  20px 0px; font-size: 30px;text-align: end;" id="Profile_card_Name">ARATRICK NATH</div>
+          <div style="height: 124px;padding:  20px 0px; font-size: 30px;text-align: end;" id="Profile_card_Name">---</div>
           <div class="flex">
             <div class="flex-div">
               <div style="font-size: 8px;">DOB</div>
-              <div style="font-size: 15px;" id="Profile_card_Dob">DOB ++</div>
+              <div style="font-size: 15px;" id="Profile_card_Dob">---</div>
             </div>
             <div class="flex-div">
               <div style="font-size: 8px;">Gender</div>
-              <div style="font-size: 15px;" id="Profile_card_Gender">Gender ++</div>
+              <div style="font-size: 15px;" id="Profile_card_Gender">---</div>
             </div>
           </div>
           <div class="flex">
             <div class="flex-div">
               <div style="font-size: 8px;">Phone No</div>
-              <div style="font-size: 15px;" id="Profile_card_Phone">Phone No ++</div>
+              <div style="font-size: 15px;" id="Profile_card_Phone">---</div>
             </div>
             <div class="flex-div">
               <div style="font-size: 8px;">Email</div>
-              <div style="font-size: 15px;" id="Profile_card_Email">Email ++</div>
+              <div style="font-size: 15px;" id="Profile_card_Email">---</div>
             </div>
           </div>
           <div class="flex">
             <div class="flex-div">
               <div style="font-size: 8px;">Pin Code</div>
-              <div style="font-size: 15px;" id="Profile_card_Pin_code">Pin Code ++</div>
+              <div style="font-size: 15px;" id="Profile_card_Pin_code">---</div>
             </div>
             <div class="flex-div">
               <div style="font-size: 8px;">State</div>
-              <div style="font-size: 15px;" id="Profile_card_State">State++</div>
+              <div style="font-size: 15px;" id="Profile_card_State">---</div>
             </div>
           </div>
           <div class="flex">
             <div class="flex-div">
               <div style="font-size: 8px;">Address</div>
-              <div style="font-size: 15px;" id="Profile_card_Address">Address ++</div>
+              <div style="font-size: 15px;" id="Profile_card_Address">---</div>
             </div>
           </div>
         </div>
@@ -1567,9 +1615,6 @@ let t6=()=>{
   '</div>';
   document.getElementById(id).innerHTML+=temp;
  }
-
-
-
   t1(0,2);
   t2();t3();
   t1(2,hhh.length);
@@ -1927,8 +1972,54 @@ function load_timeline(){
     }
   }
   log();
+
+  let approved_Profile=()=>{
+    document.getElementById("Approved").innerHTML=""
+    if(1==1)
+    {
+      let temp=
+      '<div>'+
+        '<div class="middle checked">'+
+          '<i class="bi bi-check-lg"></i>'+
+        '</div>'+
+        '<div class="middle">checked</div>'+
+      '</div>';
+      document.getElementById('Approved').innerHTML=temp
+      Approved.classList.add("green")
+    }
+    else{
+      let temp=
+        '<div>'+                
+          '<div class="middle rejected">'+
+            '<i class="bi bi-x-lg"></i>'+
+          '</div>'+
+          '<div class="middle">Rejected</div>'+
+        '</div>';
+      document.getElementById('Approved').innerHTML=temp
+      Approved.classList.add("red");
+    }
+  } 
+  approved_Profile();
+
+  let home_vote_ui=()=>{
+    if(1==0){
+        home_vote.classList.add('show')
+    }
+  }
+  home_vote_ui();
 }
 load_timeline()
+
+
+
+
+
+
+
+
+
+
+
 
 
 

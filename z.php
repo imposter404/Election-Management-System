@@ -28,11 +28,12 @@ class obj{}
 // $insertResult = $collection->insertOne([
 //     'log'=>$a
 // ]);
-// session_start();
+session_start();
 
 
 
 // $document = $collection->findOne(['_id'=>$_SESSION["ID"]]);
+$document = $collection->findOne(['_id'=>new MongoDB\BSON\ObjectId($_SESSION["ID"])]);
 // if($document)
 // {
 //     echo "hi";
@@ -40,20 +41,23 @@ class obj{}
 //     print_r($z);
 // }    $collection = $database->selectCollection('status');
 
-$voting=new obj();
+// $voting=new obj();
 
-$collection = $database->selectCollection('status');
-if($document)
-{
-    $voting->Start_Date=$document->Start_Date;
-    $voting->End_Date=$document->End_Date;
-    $voting->Start_Time=$document->Start_Time;
-    $voting->End_Time=$document->End_Time;
-    $voting->Status=$document->Status;
-}
+// $collection = $database->selectCollection('status');
+// if($document)
+// {
+//     $voting->Start_Date=$document->Start_Date;
+//     $voting->End_Date=$document->End_Date;
+//     $voting->Start_Time=$document->Start_Time;
+//     $voting->End_Time=$document->End_Time;
+//     $voting->Status=$document->Status;
+// }
 
-print_r($document->_id);
-print_r($voting);
+unset($document->user);
+unset($document->_id);
+$document=json_encode($document);
+print_r($document);
+// print_r($voting);
 
 
 
