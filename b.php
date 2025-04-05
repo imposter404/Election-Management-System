@@ -1,6 +1,11 @@
 <?php
-// require(__DIR__."/phpmongodb/vendor/autoload.php");
-require("a.php");
+
+
+session_start();
+
+echo $_SESSION['token'];
+
+
 
 
 

@@ -35,7 +35,7 @@
 }
 
 body{
-  /* background: black; */
+  /* background: linear-gradient(0deg,#000,#000),url(img/cornered-stairs2.png) center/cover; */
   background: rgb(29, 29, 29);
   margin: 0;
   height: 100dvh;
@@ -495,27 +495,40 @@ backdrop-filter: blur(10px);
     }
     &.approved{
       width: 15%;
+      position: relative;
       &.green{
         background: green;
       }
       &.red{
         background: #fd3737;
       }
-      .checked{
+      .circle{
         font-size: 50px;
-        background: green;
         color: white;
         aspect-ratio: 1/1;
         height: 100px;
         border-radius: 50%;
       }
+      .checked{
+        background: green;
+      }
       .rejected{
-        font-size: 50px;
         background: rgb(253, 55, 55);
-        color: white;
-        aspect-ratio: 1/1;
-        height: 100px;
-        border-radius: 50%;
+      }
+      .details{
+        position: absolute;
+        bottom: 0;
+        width: 80%;
+        padding: 10px;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+        transition: all .4s ease;
+      }
+      &:hover{
+        .details{
+          /* height: 50px; */
+          transform: translateY(0%);
+        }
       }
     }
     &.profile{
@@ -904,7 +917,7 @@ backdrop-filter: blur(10px);
 </style>
 <body>
 
-<div class="middle" style="display: none;">
+<div class="middle" style="display: non;">
   <div class="header" id="header">
     <div class="tab1 flex">
       <input class="flex-div" type="radio" name="tab" id="r1" >
@@ -916,7 +929,7 @@ backdrop-filter: blur(10px);
   </div>
 </div>
 
-<div class="offcanvas1 Login" style="display: none;">
+<div class="offcanvas1 Login" style="display: non;">
   <div class="middle">
     <div class="card1">
       <div class="flex" style="height: 100%;">
@@ -928,7 +941,7 @@ backdrop-filter: blur(10px);
           <div class="input-group has-validation">
             <span class="input-group-text">@</span>
             <div class="form-floating is-invaid input">
-              <input type="text" class="form-control " id="user_id" placeholder="Username" autocomplete="off" value="ABC"  required>
+              <input type="text" class="form-control " id="user_id" placeholder="Username" autocomplete="off" required>
               <label for="user_id">Username</label>
             </div>
             <div class="invalid-feedback">
@@ -938,7 +951,7 @@ backdrop-filter: blur(10px);
           <div class="input-group has-validation" style="margin-top: 30px;">
             <span class="input-group-text">@</span>
             <div class="form-floating is-invaid input">
-              <input type="text" class="form-control " id="password" placeholder="Username" autocomplete="off" value="123"  required>
+              <input type="text" class="form-control " id="password" placeholder="Password" autocomplete="off" required>
               <label for="password">Password</label>
             </div>
             <div class="invalid-feedback">
@@ -1109,16 +1122,21 @@ backdrop-filter: blur(10px);
 
 
 
-              <div class="flex-div card1 approved middle" id="Approved">
+              <div class="flex-div card1 approved rejected middle" id="Approved">
                 <div>
-                  <div class="middle rejected">
+                  <div class="middle circle rejected">
                     <!-- <i class="bi bi-check-lg"></i> -->
                     <i class="bi bi-x-lg"></i>
                   </div>
-                  <div class="middle">checked</div>
-                  <!-- <div class="middle">Rejected</div> -->
+                  <!-- <div class="middle">checked</div> -->
+                  <div class="middle">Rejected</div>
                 </div>
+                <div class="details middle">Your profile is up todate</div>
               </div>
+
+
+
+
 
 
 
@@ -1160,6 +1178,10 @@ backdrop-filter: blur(10px);
               </div>
             </div>
           </div>
+
+
+
+
           <div class="flex-div">
             <div class="flex">
               <div class="flex-div card1 secure">
@@ -1172,7 +1194,7 @@ backdrop-filter: blur(10px);
                     <div class="line"></div>
                     <div style="z-index: 0;width: 50%;">
                       <div style="font-size: 15px; text-wrap: nowrap;"><i class="bi bi-person"></i>UserID</div>
-                      <div style="font-size: 30px;" id="home_secured_user_id">ABCD</div>
+                      <div style="font-size: 30px;" id="home_secured_user_id">---</div>
                       <hr style="width: 100%;">
                       <div style="font-size: 15px; text-wrap: nowrap;"><i class="bi bi-lock"></i>Password</div>
                       <div style="font-size: 30px;">
@@ -1182,28 +1204,41 @@ backdrop-filter: blur(10px);
                   </div>
                 </div>
               </div>
+
+
+
+
+
+
               <div class="flex-div card1 timeline" style="width: 50%;"></div>
+
+
+
+
 
               <div class="flex-div card1 timeline">
                 <!-- <div class="line"></div> -->
                 <div class="flex" style="width: 100%;">
-                  <div class="flex-div">
-                  <table class="table text-light text-nowrap table-borderless" id="table_status">
-                    <tr style="height: 46px;"><td></td></tr>
-                    <tr><td><i class="bi bi-check-lg complete"></i>Complete</td></tr>
-                    <tr><td colspan="2"><i class="bi bi-arrow-clockwise ongoing"></i>Ongoing</td></tr>
-                    <tr><td colspan="2"><i class="bi bi-x-lg rejected"></i>Rejected</td></tr>
-                  </table>
+                  <div class="flex-div ">
+                    <table class="table text-light text-nowrap table-borderless" id="table_status">
+                      <!-- js render -->
+                      <tr style="height: 46px;"><td></td></tr>
+                      <!-- <tr><td><i class="bi bi-check-lg complete"></i>Complete</td></tr>
+                      <tr><td colspan="2"><i class="bi bi-arrow-clockwise ongoing"></i>Ongoing</td></tr>
+                      <tr><td colspan="2"><i class="bi bi-x-lg rejected"></i>Rejected</td></tr>
+                    -->
+                    </table>
                   </div>
                   <div class="flex-div">
                   <table class="table text-light text-nowrap table-borderless" id="table_data">
                     <tbody>
+                      <!-- Js render -->
                       <tr>
                         <td>Date</td>
                         <td>Time</td>
                         <td>Update</td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>22/OCT/2025</td>
                         <td>9:15</td>
                         <td>Profile Varified</td>
@@ -1217,14 +1252,22 @@ backdrop-filter: blur(10px);
                         <td>22/OCT/2025</td>
                         <td>9:15</td>
                         <td>Your Application Have Been Rejected</td>
-                      </tr>
+                      </tr>--->
                     </tbody>
+
                   </table>
                 </div>
                 </div>
               </div>
-              <div class="flex-div card1 vote middle" onclick="offcanvas_Open('.Vote','right')">
-                <div class="middle lock" id="home_vote">
+
+
+
+
+
+
+
+              <div class="flex-div card1 vote middle"id="home_vote" onclick="offcanvas_Open('.Vote','right')">
+                <div class="middle lock" id="home_vote_lock">
                   <div>
                     <i class="bi bi-lock" style="opacity: 5;font-size: 50px;"></i>
                   </div>
@@ -1232,6 +1275,13 @@ backdrop-filter: blur(10px);
                 </div>
                 <div>VOTE</div>
               </div>
+
+
+
+
+
+
+
             </div>
           </div>
         </div>
@@ -1416,7 +1466,7 @@ backdrop-filter: blur(10px);
           </div>
           <hr>
           <div class="middle" style="padding: 20px 0;">
-            <button class="btn btn-warning" style="width: 80%;">Done</button>
+            <button class="btn btn-warning" style="width: 80%;" onclick="location.reload()">Done</button>
           </div>
         </div>
       </div>
@@ -1798,9 +1848,9 @@ function sendPHP(e,f) {
 
 
 
-
 let obj
-let user_Profile
+let user_Profile 
+let voting_details
 
 function Login(){
   // obj={
@@ -1812,63 +1862,57 @@ function Login(){
     password:document.getElementById("password").value,
     SessionToken:""
   }
-  if(sessionStorage.SessionToken==undefined)
-  {
-    sendPHP(JSON.stringify(obj),"Login");
-    response=JSON.parse(response)
-    console.log(response,"Login");
-    // user_Profile=response.profile
-    // load_profile();
-    if(response.user_id=='false'){
-      alert("Invalid UserID")
-    }
-    else if(response.password=='false'){
-      alert("Invalid Password")
-    }
-    else{
-      user_Profile=response.profile
-      load_profile();
-      if(response.SessionToken!=undefined)
-      {
-        sessionStorage.setItem("SessionToken",response.SessionToken);
-        setTimeout(()=>{
-          document.getElementById("header").classList.add("hide")
-          offcanvas_Close(".Login","top");
-        },1000)
-      }
-    }
-  }
-}
 
-// Login()
-let voting_details
-function Re_Login(){
+  let load_all=()=>{
+    user_Profile=response.profile;
+    voting_details=response.voting;
+    setTimeout(()=>{
+      document.getElementById("header").classList.add("hide")
+      offcanvas_Close(".Login","top");
+      offcanvas_Close("#Register","bottom")
+    },1000)
+    load_profile();
+    load_timeline();
+  }
+
+
+
   if(sessionStorage.SessionToken!=undefined)
   {
+
     temp={ SessionToken:sessionStorage.SessionToken }
     console.log("send",temp)
     sendPHP(JSON.stringify(temp),"Login");
     response=JSON.parse(response);
-    if(response.SessionToken=="valid")
+    if(response.login.SessionToken=="valid")
     {
-      user_Profile=response.profile;
-      voting_details=response.voting
-      load_profile();
-      // user_Profile=response.profile
-      setTimeout(()=>{
-        document.getElementById("header").classList.add("hide")
-        offcanvas_Close(".Login","top");
-        offcanvas_Close("#Register","bottom")
-      },100)
+      load_all();
     }
     else{
       sessionStorage.clear();
     }
     console.log(response,"sessionToken")
   }
+  else if(obj.user_id!="" && obj.password!=""){
+    sendPHP(JSON.stringify(obj),"Login");
+    response=JSON.parse(response);
+    console.log(response,"Login");
+    if(response.login.user_id=='false'){
+      alert("Invalid UserID")
+    }
+    else if(response.login.password=='false'){
+      alert("Invalid Password")
+    }
+    else{
+      user_Profile=response.profile
+      voting_details=response.voting;
+      sessionStorage.setItem("SessionToken",response.login.SessionToken);
+      load_all();
+    }
+  }
 }
-Re_Login();
 
+Login();
 
 
 
@@ -1880,6 +1924,7 @@ function Logout()
     location.reload()
   },1000)
 }
+
 
 function load_profile()
 {
@@ -1903,7 +1948,6 @@ function load_profile()
 
   
 function load_timeline(){
-
   let load_date=()=>{
     document.getElementById('Time').innerHTML=""
     let temp1={}
@@ -1981,22 +2025,26 @@ function load_timeline(){
     {
       let temp=
       '<div>'+
-        '<div class="middle checked">'+
+        '<div class="middle circle checked">'+
           '<i class="bi bi-check-lg"></i>'+
         '</div>'+
         '<div class="middle">checked</div>'+
-      '</div>';
+      '</div>'+
+      '<div class="details middle">Your profile is up-to date</div>';
+      
       document.getElementById('Approved').innerHTML=temp
       Approved.classList.add("green")
     }
     else{
       let temp=
         '<div>'+                
-          '<div class="middle rejected">'+
+          '<div class="middle circle rejected">'+
             '<i class="bi bi-x-lg"></i>'+
           '</div>'+
           '<div class="middle">Rejected</div>'+
-        '</div>';
+        '</div>'+
+      '<div class="details middle">Your profile is not Complete</div>'
+
       document.getElementById('Approved').innerHTML=temp
       Approved.classList.add("red");
     }
@@ -2005,12 +2053,13 @@ function load_timeline(){
 
   let home_vote_ui=()=>{
     if(user_Profile.voted=='true'){
-        home_vote.classList.add('show')
+        home_vote.onclick=""
+        home_vote_lock.classList.add('show')
     }
   }
   home_vote_ui();
 }
-load_timeline()
+// load_timeline()
 
 
 

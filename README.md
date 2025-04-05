@@ -1,40 +1,12 @@
-# Election Management System 
-
-
-
-<div align="left">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="50px" alt="JavaScript"  />
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" height="50px" alt="Html"  />
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" height="50px" alt="CSS" />
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" height="50px" alt="PHP"/>
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" height="50px" alt="MongoDB" />
-          
-
-
-
-</div>
-    
-
-
-# Overview
-to build a Election Management System for digital voting process 
-
-# Description 
-
 # Setup
 
 ## Enviornment Setup
-- install MongoDB Compass form here [MongoDB](https://www.mongodb.com/try/download/compass)
-- for MongoDb PHP connection you will need the PHP_MONGODB.dll file download from [PERL](https://pecl.php.net/package/mongodb)
+- install MongoDb Compass 
+- for MongoDb PHP connection you will need the PHP_MONGODB.dll file download from PERL []
     - now you will have 2 option
         - Thread Safe (ts)
         - Non Thread Safe (nts)
-- install `Xampp` from here [Xampp](https://www.apachefriends.org/)
+- install `Xampp`
 - go to `Xampp/php` there will be a file `php8ts.dll` download `ts` or `nts` accoding to it
 - copy the `PHP_MONGODB.dll` file to `Xampp/php/ext` and paste it here 
 - goto  `Xampp/php/php.ini` and write the code
@@ -49,7 +21,7 @@ to build a Election Management System for digital voting process
 > http://localhost/dashboard/phpinfo.php
 > ```
 - search for `MongoDB` it will say `enabled`
-- now go to `Composer` website and download it [Composer](https://getcomposer.org/)
+- now go to `Composer` website and download it []
 - go to your project dir and create a folder `phpmongodb` and open this dir in `cmd`
 - run the command 
 > ```cmd
