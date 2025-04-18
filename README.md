@@ -55,4 +55,10 @@ All Done :)
 
 - Flow Chart
 ![Workflow](Documentation/a.svg)
+- User
 ![FlowChart](Documentation/FlowChart.drawio.svg)
+- Admin
+![Flowchart](Documentation/FlowChartAdmin.drawio.svg)
+- use case
+![FlowChart](Documentation/Use_Case.drawio.svg)
+
